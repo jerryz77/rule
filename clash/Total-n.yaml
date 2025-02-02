@@ -1,0 +1,2180 @@
+# 机场订阅，名称不能重复
+proxy-providers:
+  Flybird:
+    type: http
+    interval: 1800
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+    proxy: 🟢 直连
+    url: "https://fbapiv2.fbsublink.com/flydsubal/uat9ds2jsyiqkwzl?clash=1&extend=1"
+  Flowercloud:
+    type: http
+    interval: 1800
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+    proxy: 🟢 直连
+    url: "https://api.xmancdn.com/osubscribe.php?sid=71858&token=b0IrxVt0&sip002=1"
+  SSR:
+    type: http
+    interval: 1800
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+    proxy: 🟢 直连
+    url: "https://ar.saphirodoriko.com/link/XauCdNdYR0Y7la0o?sub=1"
+
+
+# 用于下载订阅时指定UA
+global-ua: clash
+    
+# 全局配置
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7894
+ipv6: false
+allow-lan: true
+unified-delay: true
+tcp-concurrent: true
+  
+geodata-mode: false
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 48
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+  
+# 控制面板
+external-controller: 0.0.0.0:9090
+secret: ""
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+# 匹配进程 always/strict/off
+find-process-mode: strict
+global-client-fingerprint: chrome
+keep-alive-idle: 600
+keep-alive-interval: 30
+
+# 策略组选择和fakeip缓存
+profile:
+  store-selected: true
+  store-fake-ip: true
+  
+# 流量嗅探
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - +.v2ex.com
+  skip-domain:
+    - "dlg.io.mi.com"
+    - "+.push.apple.com"
+    - "+.apple.com"
+    
+# 代理模式
+tun:
+  enable: true
+  stack: mixed
+  mtu: 9000
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  
+# DNS模块
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  respect-rules: true
+  # 模式切换 redir-host / fake-ip
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  # 模式切换 whitelist/blacklist 
+  # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "+.lan"
+    - "+.local"
+    - geosite:private
+    - geosite:cn
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver-policy:
+    "rule-set:private_domain,cn_domain":
+    - 223.5.5.5
+    - 119.29.29.29
+    "rule-set:geolocation-!cn":
+      - "https://dns.cloudflare.com/dns-query"
+      - "https://dns.google/dns-query"
+ 
+proxies:
+  - {name: Hong Kong-01, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56001, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-02, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56002, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-03, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56003, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-04, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56004, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-05, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56005, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-06, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56006, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-07, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56007, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-08, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56008, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-09, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56009, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-10, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56010, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-11, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56011, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-12, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56012, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-13, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56013, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-14, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56014, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-15, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56015, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-16, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56016, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-17, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56017, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-18, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56018, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-19, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56019, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Hong Kong-20, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56020, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Taiwan-01, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56021, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Taiwan-02, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56022, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Taiwan-03, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56023, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Taiwan-04, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56024, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Taiwan-05, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56025, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Taiwan-06, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56026, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Taiwan-07, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56027, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Taiwan-08, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56028, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Taiwan-09, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56029, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Taiwan-10, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56030, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Japan-01, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56031, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Japan-02, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56032, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Japan-03, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56033, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Japan-04, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56034, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Japan-05, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56035, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Japan-06, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56036, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Japan-07, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56037, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Japan-08, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56038, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Japan-09, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56039, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Japan-10, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56040, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Singapore-01, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56041, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Singapore-02, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56042, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Singapore-03, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56043, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Singapore-04, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56044, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Singapore-05, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56045, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Singapore-06, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56046, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Singapore-07, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56047, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Singapore-08, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56048, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Singapore-09, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56049, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Singapore-10, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56050, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: USA-01, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56051, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: USA-02, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56052, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: USA-03, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56053, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: USA-04, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56054, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: USA-05, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56055, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: USA-06, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56056, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: USA-07, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56057, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: USA-08, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56058, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: USA-09, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56059, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: USA-10, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56060, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: UK-01, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56061, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: UK-02, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56062, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: UK-03, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56063, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: UK-04, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56064, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: UK-05, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56065, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Malaysia-01, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56066, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Malaysia-02, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56067, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Malaysia-03, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56068, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Malaysia-04, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56069, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Malaysia-05, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56070, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Turkey-01, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56097, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Turkey-02, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56098, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Argentina-01, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56099, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: Argentina-02, server: c49095fe.pnd6xm1ljcfpc3b-fbnode.6pzfwf.com, port: 56100, type: ss, cipher: chacha20-ietf-poly1305, password: uaEHNM, udp: true}
+  - {name: 香港实验性 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 10001, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 日本实验性 IEPL 中继 1, server: preshdata1.fc-aliyun.xyz, port: 10002, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新加坡实验性 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 10003, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 美国实验性 IEPL 中继 1, server: preshdata1.fc-aliyun.xyz, port: 10004, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 香港高级 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 12001, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 香港高级 IEPL 中继 2, server: pregzdata1.fc-aliyun.xyz, port: 12002, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 香港高级 IEPL 中继 3, server: pregzdata1.fc-aliyun.xyz, port: 12003, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 日本高级 IEPL 中继 1, server: preshdata1.fc-aliyun.xyz, port: 12011, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 日本高级 IEPL 中继 2, server: preshdata1.fc-aliyun.xyz, port: 12012, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 日本高级 IEPL 中继 3, server: preshdata1.fc-aliyun.xyz, port: 12013, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新加坡高级 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 12031, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新加坡高级 IEPL 中继 2, server: pregzdata1.fc-aliyun.xyz, port: 12032, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新加坡高级 IEPL 中继 3, server: pregzdata1.fc-aliyun.xyz, port: 12033, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 台湾高级 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 12041, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 台湾高级 IEPL 中继 2, server: pregzdata1.fc-aliyun.xyz, port: 12042, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 台湾高级 IEPL 中继 3, server: pregzdata1.fc-aliyun.xyz, port: 12043, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 美国高级 IEPL 中继 1, server: preshdata1.fc-aliyun.xyz, port: 12021, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 美国高级 IEPL 中继 2, server: preshdata1.fc-aliyun.xyz, port: 12022, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 美国高级 IEPL 中继 3, server: preshdata1.fc-aliyun.xyz, port: 12023, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 香港标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11001, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 香港标准 IEPL 中继 2, server: pregzdata1.fc-aliyun.xyz, port: 11002, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 香港标准 IEPL 中继 3, server: pregzdata1.fc-aliyun.xyz, port: 11003, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 香港标准 IEPL 中继 4, server: pregzdata1.fc-aliyun.xyz, port: 11004, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 香港标准 IEPL 中继 5, server: pregzdata1.fc-aliyun.xyz, port: 11005, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 香港标准 IEPL 中继 6, server: pregzdata1.fc-aliyun.xyz, port: 11006, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 香港标准 IEPL 中继 7, server: pregzdata1.fc-aliyun.xyz, port: 11007, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 香港标准 IEPL 中继 8, server: pregzdata1.fc-aliyun.xyz, port: 11008, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 日本标准 IEPL 中继 1, server: preshdata1.fc-aliyun.xyz, port: 11011, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 日本标准 IEPL 中继 2, server: preshdata1.fc-aliyun.xyz, port: 11012, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 日本标准 IEPL 中继 3, server: preshdata1.fc-aliyun.xyz, port: 11013, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 日本标准 IEPL 中继 4, server: preshdata1.fc-aliyun.xyz, port: 11014, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 日本标准 IEPL 中继 5, server: preshdata1.fc-aliyun.xyz, port: 11015, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 日本标准 IEPL 中继 6, server: preshdata1.fc-aliyun.xyz, port: 11016, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 日本标准 IEPL 中继 7, server: preshdata1.fc-aliyun.xyz, port: 11017, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 日本标准 IEPL 中继 8, server: preshdata1.fc-aliyun.xyz, port: 11018, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新加坡标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11031, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新加坡标准 IEPL 中继 2, server: pregzdata1.fc-aliyun.xyz, port: 11032, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新加坡标准 IEPL 中继 3, server: pregzdata1.fc-aliyun.xyz, port: 11033, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新加坡标准 IEPL 中继 4, server: pregzdata1.fc-aliyun.xyz, port: 11034, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新加坡标准 IEPL 中继 5, server: pregzdata1.fc-aliyun.xyz, port: 11035, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新加坡标准 IEPL 中继 6, server: pregzdata1.fc-aliyun.xyz, port: 11036, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新加坡标准 IEPL 中继 7, server: pregzdata1.fc-aliyun.xyz, port: 11037, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新加坡标准 IEPL 中继 8, server: pregzdata1.fc-aliyun.xyz, port: 11038, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 台湾标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11041, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 台湾标准 IEPL 中继 2, server: pregzdata1.fc-aliyun.xyz, port: 11042, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 台湾标准 IEPL 中继 3, server: pregzdata1.fc-aliyun.xyz, port: 11043, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 美国标准 IEPL 中继 1, server: preshdata1.fc-aliyun.xyz, port: 11021, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 美国标准 IEPL 中继 2, server: preshdata1.fc-aliyun.xyz, port: 11022, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 美国标准 IEPL 中继 3, server: preshdata1.fc-aliyun.xyz, port: 11023, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 美国标准 IEPL 中继 4, server: preshdata1.fc-aliyun.xyz, port: 11024, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 美国标准 IEPL 中继 5, server: preshdata1.fc-aliyun.xyz, port: 11025, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 美国标准 IEPL 中继 6, server: preshdata1.fc-aliyun.xyz, port: 11026, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 美国标准 IEPL 中继 7, server: preshdata1.fc-aliyun.xyz, port: 11027, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 美国标准 IEPL 中继 8, server: preshdata1.fc-aliyun.xyz, port: 11028, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 摩尔多瓦标准 IEPL 中继 1, server: prebjdata1.fc-aliyun.xyz, port: 11050, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 乌克兰标准 IEPL 中继 1, server: prebjdata1.fc-aliyun.xyz, port: 11051, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 意大利标准 IEPL 中继 1, server: prebjdata1.fc-aliyun.xyz, port: 11052, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 匈牙利标准 IEPL 中继 1, server: prebjdata1.fc-aliyun.xyz, port: 11053, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 西班牙标准 IEPL 中继 1, server: prebjdata1.fc-aliyun.xyz, port: 11054, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 土耳其标准 IEPL 中继 1, server: prebjdata1.fc-aliyun.xyz, port: 11055, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 德国标准 IEPL 中继 1, server: prebjdata1.fc-aliyun.xyz, port: 11056, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 德国标准 IEPL 中继 2, server: prebjdata1.fc-aliyun.xyz, port: 11057, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 英国标准 IEPL 中继 1, server: prebjdata1.fc-aliyun.xyz, port: 11058, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 英国标准 IEPL 中继 2, server: prebjdata1.fc-aliyun.xyz, port: 11059, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 荷兰标准 IEPL 中继 1, server: prebjdata1.fc-aliyun.xyz, port: 11060, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 荷兰标准 IEPL 中继 2, server: prebjdata1.fc-aliyun.xyz, port: 11061, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 法国标准 IEPL 中继 1, server: prebjdata1.fc-aliyun.xyz, port: 11062, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 法国标准 IEPL 中继 2, server: prebjdata1.fc-aliyun.xyz, port: 11063, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 加拿大标准 IEPL 中继 1, server: preshdata1.fc-aliyun.xyz, port: 11064, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 加拿大标准 IEPL 中继 2, server: preshdata1.fc-aliyun.xyz, port: 11065, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 阿根廷标准 IEPL 中继 1, server: preshdata1.fc-aliyun.xyz, port: 11066, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 巴西标准 IEPL 中继 1, server: preshdata1.fc-aliyun.xyz, port: 11067, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 智利标准 IEPL 中继 1, server: preshdata1.fc-aliyun.xyz, port: 11068, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 澳大利亚标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11069, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 新西兰标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11070, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 韩国标准 IEPL 中继 1, server: preshdata1.fc-aliyun.xyz, port: 11071, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 韩国标准 IEPL 中继 2, server: preshdata1.fc-aliyun.xyz, port: 11072, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 印尼标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11073, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 泰国标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11074, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 越南标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11075, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 印度标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11080, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 巴基斯坦标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11081, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 以色列标准 IEPL 中继 1, server: prebjdata1.fc-aliyun.xyz, port: 11082, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 阿联酋标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11083, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 菲律宾标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11084, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 马来西亚标准 IEPL 中继 1, server: pregzdata1.fc-aliyun.xyz, port: 11085, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: 埃及标准 IEPL 中继 1, server: prebjdata1.fc-aliyun.xyz, port: 11086, type: ss, cipher: aes-128-gcm, password: Sj10bnYDe7w6V29E, plugin: obfs, plugin-opts: {mode: http, host: 263ad43b2d.m.ctrip.com}}
+  - {name: Australia Sydney Mascot EQSY1 25GE0/0/0 DELLR650 F01, server: au01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Australia Sydney Mascot EQSY1 25GE0/0/1 DELLR650 F02, server: au02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Australia Sydney Mascot EQSY1 25GE0/0/2 DELLR650 F03, server: au03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Australia Sydney Mascot EQSY1 25GE0/0/3 DELLR650 F04, server: au04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Australia Sydney Mascot EQSY1 25GE0/0/4 DELLR650 F05, server: au05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Australia Sydney Mascot EQSY1 25GE0/0/5 DELLR650 F06, server: au06.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Australia Sydney Mascot EQSY1 25GE0/0/6 DELLR650 F07, server: au07.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Australia Sydney Mascot EQSY1 25GE0/0/7 DELLR650 F08, server: au08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Australia Sydney Mascot EQSY1 25GE0/0/8 DELLR650 F09, server: au09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Australia Sydney Mascot EQSY1 25GE0/0/8 DELLR650 F10, server: au10.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Canada Quebec Montreal Beauharnois 10GE0/0/23 F01, server: ca01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Canada Quebec Montreal Beauharnois 10GE0/0/24 DELLR650 F02, server: ca02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Canada Quebec Montreal Beauharnois 10GE0/0/25 DELLR650 F03, server: ca03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Canada Quebec Montreal Beauharnois 10GE0/0/26DELLR6515 F04, server: ca04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Canada Quebec Montreal Beauharnois 10GE0/0/27 DELLR6515 F05, server: ca05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Canada Quebec Montreal Beauharnois 10GE0/0/28 DELLR6515 F06, server: ca06.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Canada Quebec Montreal Beauharnois 10GE0/0/29 DELLR6525 F07, server: ca09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Canada Quebec Montreal Beauharnois 10GE0/0/30 DELLR650 F08, server: ca08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Canada Quebec Montreal Beauharnois 10GE0/0/31 DELLR6615 F09, server: ca09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Canada Quebec Montreal Beauharnois 10GE0/0/32 DELLR6515 F10, server: ca10.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: French Hauts-de-France Gravelines 25GE0/0/10 DELLR640 F08, server: fr08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: French Hauts-de-France Gravelines 25GE0/0/11 DELLR640 F09, server: fr09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: French Hauts-de-France Gravelines 25GE0/0/12 DELLR640 F10, server: fr10.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: French Hauts-de-France Gravelines 25GE0/0/3 DELLR640 F01, server: fr01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: French Hauts-de-France Gravelines 25GE0/0/4 DELLR640 F02, server: fr02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: French Hauts-de-France Gravelines 25GE0/0/5 DELLR640 F03, server: fr03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: French Hauts-de-France Gravelines 25GE0/0/6 DELLR640 F04, server: fr04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: French Hauts-de-France Gravelines 25GE0/0/7 DELLR640 F05, server: fr05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: French Hauts-de-France Gravelines 25GE0/0/8 DELLR640 F06, server: fr06.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: French Hauts-de-France Gravelines 25GE0/0/9 DELLR640 F07, server: fr07.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: German Hessen Limburg an der Lahn 10GE0/0/10 DELLR650 F02, server: ge02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: German Hessen Limburg an der Lahn 10GE0/0/11 DELLR650 F03, server: ge03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: German Hessen Limburg an der Lahn 10GE0/0/12 DELLR650 F04, server: ge04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: German Hessen Limburg an der Lahn 10GE0/0/13 DELLR650 F05, server: ge05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: German Hessen Limburg an der Lahn 10GE0/0/14 DELLR650 F06, server: ge06.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: German Hessen Limburg an der Lahn 10GE0/0/15 DELLR650 F07, server: ge07.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: German Hessen Limburg an der Lahn 10GE0/0/16 DELLR650 F08, server: ge08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: German Hessen Limburg an der Lahn 10GE0/0/17 DELLR650 F09, server: ge09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: German Hessen Limburg an der Lahn 10GE0/0/18 DELLR650 F10, server: ge10.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: German Hessen Limburg an der Lahn 10GE0/0/9 DELLR650 F01, server: ge01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Chai Wan MEGA-i 10GE0/0/23 DELLR6515 F39, server: hk39.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Chai Wan MEGA-i 10GE0/0/27 DELLR640 F40, server: hk40.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Chai Wan MEGA-i 40GE0/0/0 DELLR650 F31, server: hk31.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Chai Wan MEGA-i 40GE0/0/1 DELLR650 F32, server: hk32.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Chai Wan MEGA-i 40GE0/0/2 DELLR650 F33, server: hk33.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Chai Wan MEGA-i 40GE0/0/3 DELLR650 F34, server: hk34.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Chai Wan MEGA-i 40GE0/0/4 DELLR650 F35, server: hk35.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Chai Wan MEGA-i 40GE0/0/5 DELLR650 F36, server: hk36.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Chai Wan MEGA-i 40GE0/0/6 DELLR650 F37, server: hk37.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Chai Wan MEGA-i 40GE0/0/7 DELLR650 F38, server: hk38.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 25GE0/0/13 DELLR660 F21, server: hk21.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 25GE0/0/14 DELLR660 F22, server: hk22.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 25GE0/0/15 DELLR660 F23, server: hk23.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 25GE0/0/16 DELLR660 F24, server: hk24.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 25GE0/0/17 DELLR660 F25, server: hk25.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 25GE0/0/18 DELLR660 F26, server: hk26.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 25GE0/0/19 DELLR660 F27, server: hk27.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 25GE0/0/20 DELLR660 F28, server: hk28.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 25GE0/0/21 DELLR660 F29, server: hk29.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 25GE0/0/22 DELLR660 F30, server: hk30.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 40GE0/0/0 DELLR650 F05, server: hk05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 40GE0/0/1 DELLR650 F06, server: hk06.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 40GE0/0/2 DELLR650 F07, server: hk07.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 40GE0/0/3 DELLR650 F08, server: hk08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 40GE0/0/4 DELLR650 F09, server: hk09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 40GE0/0/5 DELLR650 F10, server: hk10.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 40GE0/0/6 DELLR650 F11, server: hk11.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Sha Tin EQHK4 40GE0/0/7 DELLR650 F12, server: hk12.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Tsuen Wan EQHK1 100GE0/0/0 DELLR660  F01, server: hk01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Tsuen Wan EQHK1 100GE0/0/1 DELLR660 F02, server: hk02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Tsuen Wan EQHK1 100GE0/0/2 DELLR6625 F03, server: hk03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Tsuen Wan EQHK1 100GE0/0/3 DELLR6615 F04, server: hk04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Tsuen Wan EQHK1 25GE0/0/10 DELLR6515 F13, server: hk13.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Tsuen Wan EQHK1 25GE0/0/11 DELLR6515 F14, server: hk14.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Tsuen Wan EQHK1 25GE0/0/12 DELLR650 F15, server: hk15.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Tsuen Wan EQHK1 25GE0/0/13 DELLR650 F16, server: hk16.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Tsuen Wan EQHK1 25GE0/0/14 DELLR6515 F17, server: hk17.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Tsuen Wan EQHK1 25GE0/0/15 DELLR6515 F18, server: hk18.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Tsuen Wan EQHK1 25GE0/0/16 DELLR6515 F19, server: hk19.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Hong Kong Tsuen Wan EQHK1 25GE0/0/17 DELLR6515 F20, server: hk20.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: India Mumbai Andheri East EQMB1 10GE0/0/0 DELLR630 F01, server: in01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: India Mumbai Andheri East EQMB1 10GE0/0/1 DELLR630 F02, server: in02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: India Mumbai Andheri East EQMB1 10GE0/0/2 DELLR630 F03, server: in03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: India Mumbai Andheri East EQMB1 10GE0/0/3 DELLR620 F04, server: in04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: India Mumbai Andheri East EQMB1 10GE0/0/4 DELLR640 F05, server: in05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: India Mumbai Andheri East EQMB1 10GE0/0/5 DELLR650 F06, server: in06.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: India Mumbai Andheri East EQMB1 10GE0/0/6 DELLR630 F07, server: in07.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: India Mumbai Andheri East EQMB1 10GE0/0/7 DELLR630 F08, server: in08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: India Mumbai Andheri East EQMB1 10GE0/0/8 DELLR630 F09, server: in09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Osaka Nishi Ward EQOS1 25GE0/0/10 DELLR650 F19, server: jp19.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Osaka Nishi Ward EQOS1 25GE0/0/15 DELLR650 F20, server: jp20.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Osaka Nishi Ward EQOS1 40GE0/0/0 DELLR6515 F15, server: jp15.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Osaka Nishi Ward EQOS1 40GE0/0/1 DELLR650 F16, server: jp16.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Osaka Nishi Ward EQOS1 40GE0/0/2 DELLR660 F17, server: jp17.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Osaka Nishi Ward EQOS1 40GE0/0/3 DELLR650 F18, server: jp18.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Higashishinagawa EQTY8 100GE0/0/0 DELLR660 F09, server: jp09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Higashishinagawa EQTY8 100GE0/0/1 DELLR660 F10, server: jp10.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Higashishinagawa EQTY8 100GE0/0/2 DELLR650 F11, server: jp11.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Higashishinagawa EQTY8 100GE0/0/3 DELLR660 F12, server: jp12.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Higashishinagawa EQTY8 100GE0/0/4 DELLR660 F13, server: jp13.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Higashishinagawa EQTY8 100GE0/0/5 DELLR660 F14, server: jp14.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Ōta City EQTY1 100GE0/0/0 DELLR660 F01, server: jp01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Ōta City EQTY1 100GE0/0/1 DELLR660 F02, server: jp02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Ōta City EQTY1 100GE0/0/2 DELLR660 F03, server: jp03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Ōta City EQTY1 100GE0/0/3 DELLR660 F04, server: jp04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Ōta City EQTY1 40GE0/0/0 DELLR650 F05, server: jp05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Ōta City EQTY1 40GE0/0/1 DELLR650 F06, server: jp06.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Ōta City EQTY1 40GE0/0/2 DELLR650 F07, server: jp07.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Japan Tokyo Ōta City EQTY1 40GE0/0/3 DELLR650 F08, server: jp08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/2 DELLR630 F03, server: ru03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/3 DELLR630 F04, server: ru04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/4 DELLR620 F05, server: ru05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/5 DELLR620 F06, server: ru06.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/6 DELLR620 F07, server: ru07.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/7 DELLR620 F08, server: ru08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/8 DELLR620 F09, server: ru09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/9 DELLR620 F10, server: ru10.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/0 DELLR620 F01, server: ru01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/1 DELLR620 F02, server: ru02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Singapore Central Queenstown EQSG1 100GE0/0/0 DELLR650 F01, server: sgp01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Singapore Central Queenstown EQSG1 100GE0/0/1 DELLR650 F02, server: sgp02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Singapore Central Queenstown EQSG1 100GE0/0/2 DELLR650 F03, server: sgp03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Singapore Central Queenstown EQSG1 100GE0/0/3 DELLR650 F04, server: sgp04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Singapore Central Queenstown EQSG1 100GE0/0/4 DELLR660 F05, server: sgp05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Singapore Central Queenstown EQSG1 100GE0/0/5 DELLR660 F06, server: sgp060.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Singapore Central Queenstown EQSG1 100GE0/0/6 DELLR650 F07, server: sgp07.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Singapore Central Queenstown EQSG1 100GE0/0/7 DELLR650 F08, server: sgp08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Singapore Central Queenstown EQSG1 100GE0/0/8 DELLR660 F09, server: sgp09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Singapore Central Queenstown EQSG1 100GE0/0/9 DELLR660 F10, server: sgp10.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: South Korea Seoul Mapo-gu EQSL1 40GE0/0/0 DELLR650 F01, server: kr01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: South Korea Seoul Mapo-gu EQSL1 40GE0/0/1 DELLR650 F02, server: kr02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: South Korea Seoul Mapo-gu EQSL1 40GE0/0/2 DELLR650 F03, server: kr03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: South Korea Seoul Mapo-gu EQSL1 40GE0/0/3 DELLR650 F04, server: kr04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: South Korea Seoul Mapo-gu EQSL1 40GE0/0/4 DELLR650 F05, server: kr05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: South Korea Seoul Mapo-gu EQSL1 40GE0/0/5 DELLR650 F06, server: kr06.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: South Korea Seoul Mapo-gu EQSL1 40GE0/0/6 DELLR650 F07, server: kr07.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: South Korea Seoul Mapo-gu EQSL1 40GE0/0/7 DELLR6515 F08, server: kr08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: South Korea Seoul Mapo-gu EQSL1 40GE0/0/8 DELLR6515 F09, server: kr09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: South Korea Seoul Mapo-gu EQSL1 40GE0/0/9 DELLR6515 F10, server: kr10.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Hsinchu Zhubei 1GE0/0/0 DL360G10 F17, server: tw17.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Hsinchu Zhubei 1GE0/0/1 DL360G10 F18, server: tw18.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Hsinchu Zhubei 1GE0/0/2 DL360G10 F19, server: tw18.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Hsinchu Zhubei 1GE0/0/3 DL360G10 F20, server: tw20.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan New Taipei Xinzhuang 10GE0/0/0 DELLR640 F01, server: tw01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan New Taipei Xinzhuang 10GE0/0/1 DELLR650 F02, server: tw02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan New Taipei Xinzhuang 10GE0/0/2 DELLR650 F03, server: tw03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan New Taipei Xinzhuang 10GE0/0/3 DELLR650 F04, server: tw04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Taipei Xinyi 10GE0/0/0 DELLR640 F05, server: tw05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Taipei Xinyi 10GE0/0/1 DELLR640 F06, server: tw06.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Taipei Xinyi 10GE0/0/2 DELLC6520#1 F07, server: tw07.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Taipei Xinyi 10GE0/0/3 DELLC6520#2 F08, server: tw08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Taipei Xinyi 10GE0/0/4 DELLC6520#3 F09, server: tw09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Taipei Xinyi 10GE0/0/5 DELLC6520#4 F10, server: tw10.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Zhongli Renmei 10GE0/0/0 DL360G11 F11, server: tw11.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Zhongli Renmei 10GE0/0/1 DL360G11 F12, server: tw12.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Zhongli Renmei 10GE0/0/2 DL360G11 F13, server: tw13.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Zhongli Renmei 10GE0/0/3 DL360G11 F14, server: tw14.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Zhongli Renmei 10GE0/0/4 DL360G11 F15, server: tw15.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: Taiwan Zhongli Renmei 10GE0/0/5 DL360G11 F16, server: tw16.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United Kingdom London Borough of Bexley Erith 10GE0/0/10 DELLR640 F01, server: uk01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United Kingdom London Borough of Bexley Erith 10GE0/0/11 DELLR640 F02, server: uk02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United Kingdom London Borough of Bexley Erith 10GE0/0/12 DELLR640 F03, server: uk03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United Kingdom London Borough of Bexley Erith 10GE0/0/13 DELLR640 F04, server: uk04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United Kingdom London Borough of Bexley Erith 10GE0/0/14 DELLR640 F05, server: uk05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United Kingdom London Borough of Bexley Erith 10GE0/0/15 DELLR650 F06, server: uk06.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United Kingdom London Borough of Bexley Erith 10GE0/0/16 DELLR650 F07, server: uk07.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United Kingdom London Borough of Bexley Erith 25GE0/0/2 DELLR650 F08, server: uk08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United Kingdom London Borough of Bexley Erith 25GE0/0/3 DELLR6515 F09, server: uk09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United Kingdom London Borough of Bexley Erith 25GE0/0/4 DELLR6515 F10, server: uk10.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United States Washington Seattle EQSE2 100GE0/0/0 DELLR660 F01, server: us01.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United States Washington Seattle EQSE2 100GE0/0/1 DELLR660 F02, server: us02.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United States Washington Seattle EQSE2 100GE0/0/2 DELLR660 F03, server: us03.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United States Washington Seattle EQSE2 100GE0/0/3 DELLR660 F04, server: us04.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United States Washington Seattle EQSE2 100GE0/0/4 DELLR660 F05, server: us05.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United States Washington Seattle EQSE2 100GE0/0/5 DELLR660 F06, server: us06.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United States Washington Seattle EQSE2 100GE0/0/6 DELLR650 F07, server: us07.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United States Washington Seattle EQSE2 100GE0/0/7 DELLR650 F08, server: us08.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United States Washington Seattle EQSE2 100GE0/0/8 DELLR650 F09, server: us09.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: United States Washington Seattle EQSE2 100GE0/0/9 DELLR650 F10, server: us10.kkp.wtf, port: 27854, type: ssr, cipher: aes-256-cfb, password: NMYivZ, protocol: origin, obfs: http_simple, protocol-param: "", obfs-param: download.windowsupdate.com}
+  - {name: 🟢 直连, type: directudp, udp: true}
+
+# 锚点
+pr: &pr {type: select, proxies: [🚀 节点选择, 🔯 香港故转, 🔯 日本故转, 🔯 坡县故转, ⭐ 香港故转, ⭐ 日本故转, ⭐ 坡县故转, ♻️ 美国自动, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 坡县节点, TW 台湾节点, KR 韩国节点, 🇺🇲 美国节点, 🌐 其他节点, 🐸 手动切换, 🟢 直连]}
+# 策略组  
+proxy-groups:
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - 🔯 香港故转
+      - 🔯 日本故转
+      - 🔯 坡县故转
+      - ⭐ 香港故转
+      - ⭐ 日本故转
+      - ⭐ 坡县故转
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🇺🇲 美国节点
+      - 🌐 其他地区
+      - 🐸 手动切换
+      - DIRECT
+  - name: 📹 YouTube
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - ⭐ 香港故转
+      - ⭐ 日本故转
+      - ⭐ 坡县故转
+      - 🔯 香港故转
+      - 🔯 日本故转
+      - 🔯 坡县故转
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🇺🇲 美国节点
+      - 🌐 其他地区
+      - 🐸 手动切换
+      - DIRECT
+  - name: 🤖 AI
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🔯 日本故转
+      - 🇺🇲 美国节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - 🇭🇰 香港节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+  - name: 💧 Copilot
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🔯 日本故转
+      - 🔯 坡县故转
+      - ⭐ 日本故转
+      - ⭐ 坡县故转
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇭🇰 香港节点
+      - 🇸🇬 坡县节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+  - name: 🐬 OneDrive
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🔯 日本故转
+      - 🔯 香港故转
+      - 🔯 坡县故转
+      - ⭐ 香港故转
+      - ⭐ 日本故转
+      - 🇯🇵 日本节点
+      - 🇭🇰 香港节点
+      - 🇸🇬 坡县节点
+      - 🇺🇲 美国节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+      - DIRECT
+  - name: 🍀 Google
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🔯 香港故转
+      - 🔯 日本故转
+      - 🔯 坡县故转
+      - ⭐ 香港故转
+      - ⭐ 日本故转
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - 🇺🇲 美国节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+      - DIRECT
+  - name: 👨🏿‍💻 GitHub
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🔯 香港故转
+      - 🔯 日本故转
+      - 🔯 坡县故转
+      - ⭐ 香港故转
+      - ⭐ 日本故转
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - 🇺🇲 美国节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+      - DIRECT
+  - name: 🍎 Apple
+    type: select
+    proxies:
+      - DIRECT
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - 🇺🇲 美国节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+      - 🚀 节点选择
+  - name: ♻️ Speedtest
+    type: select
+    proxies:
+      - DIRECT
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - 🇺🇲 美国节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+      - 🚀 节点选择
+  - name: 🎵 TikTok
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🔯 日本故转
+      - 🔯 坡县故转
+      - ⭐ 日本故转
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+  - name: 🎥 Netflix
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🔯 香港故转
+      - 🔯 日本故转
+      - 🔯 坡县故转
+      - ⭐ 香港故转
+      - ⭐ 日本故转
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🎥 奈飞节点
+      - 🐸 手动切换
+  - name: 📲 Telegram
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🔯 香港故转
+      - 🔯 日本故转
+      - 🔯 坡县故转
+      - ⭐ 香港故转
+      - ⭐ 日本故转
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+  - name: 📢 FCM
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🔯 香港故转
+      - 🔯 日本故转
+      - 🔯 坡县故转
+      - ⭐ 香港故转
+      - ⭐ 日本故转
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+  - name: 🎮 游戏平台
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🔯 香港故转
+      - 🔯 日本故转
+      - 🔯 坡县故转
+      - ⭐ 香港故转
+      - ⭐ 日本故转
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+      - DIRECT
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🔯 香港故转
+      - 🔯 日本故转
+      - 🔯 坡县故转
+      - ⭐ 香港故转
+      - ⭐ 日本故转
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+  - name: 🎞️ 国内媒体
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+      - 🐸 手动切换
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+      - 🐸 手动切换
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 坡县节点
+      - TW 台湾节点
+      - KR 韩国节点
+      - 🐸 手动切换
+  - name: 🐸 手动切换
+    type: select
+    proxies:
+      - Hong Kong-01
+      - Hong Kong-02
+      - Hong Kong-03
+      - Hong Kong-04
+      - Hong Kong-05
+      - Hong Kong-06
+      - Hong Kong-07
+      - Hong Kong-08
+      - Hong Kong-09
+      - Hong Kong-10
+      - Hong Kong-11
+      - Hong Kong-12
+      - Hong Kong-13
+      - Hong Kong-14
+      - Hong Kong-15
+      - Hong Kong-16
+      - Hong Kong-17
+      - Hong Kong-18
+      - Hong Kong-19
+      - Hong Kong-20
+      - Taiwan-01
+      - Taiwan-02
+      - Taiwan-03
+      - Taiwan-04
+      - Taiwan-05
+      - Taiwan-06
+      - Taiwan-07
+      - Taiwan-08
+      - Taiwan-09
+      - Taiwan-10
+      - Japan-01
+      - Japan-02
+      - Japan-03
+      - Japan-04
+      - Japan-05
+      - Japan-06
+      - Japan-07
+      - Japan-08
+      - Japan-09
+      - Japan-10
+      - Singapore-01
+      - Singapore-02
+      - Singapore-03
+      - Singapore-04
+      - Singapore-05
+      - Singapore-06
+      - Singapore-07
+      - Singapore-08
+      - Singapore-09
+      - Singapore-10
+      - USA-01
+      - USA-02
+      - USA-03
+      - USA-04
+      - USA-05
+      - USA-06
+      - USA-07
+      - USA-08
+      - USA-09
+      - USA-10
+      - UK-01
+      - UK-02
+      - UK-03
+      - UK-04
+      - UK-05
+      - Malaysia-01
+      - Malaysia-02
+      - Malaysia-03
+      - Malaysia-04
+      - Malaysia-05
+      - Turkey-01
+      - Turkey-02
+      - Argentina-01
+      - Argentina-02
+      - 香港实验性 IEPL 中继 1
+      - 日本实验性 IEPL 中继 1
+      - 新加坡实验性 IEPL 中继 1
+      - 美国实验性 IEPL 中继 1
+      - 香港高级 IEPL 中继 1
+      - 香港高级 IEPL 中继 2
+      - 香港高级 IEPL 中继 3
+      - 日本高级 IEPL 中继 1
+      - 日本高级 IEPL 中继 2
+      - 日本高级 IEPL 中继 3
+      - 新加坡高级 IEPL 中继 1
+      - 新加坡高级 IEPL 中继 2
+      - 新加坡高级 IEPL 中继 3
+      - 台湾高级 IEPL 中继 1
+      - 台湾高级 IEPL 中继 2
+      - 台湾高级 IEPL 中继 3
+      - 美国高级 IEPL 中继 1
+      - 美国高级 IEPL 中继 2
+      - 美国高级 IEPL 中继 3
+      - 香港标准 IEPL 中继 1
+      - 香港标准 IEPL 中继 2
+      - 香港标准 IEPL 中继 3
+      - 香港标准 IEPL 中继 4
+      - 香港标准 IEPL 中继 5
+      - 香港标准 IEPL 中继 6
+      - 香港标准 IEPL 中继 7
+      - 香港标准 IEPL 中继 8
+      - 日本标准 IEPL 中继 1
+      - 日本标准 IEPL 中继 2
+      - 日本标准 IEPL 中继 3
+      - 日本标准 IEPL 中继 4
+      - 日本标准 IEPL 中继 5
+      - 日本标准 IEPL 中继 6
+      - 日本标准 IEPL 中继 7
+      - 日本标准 IEPL 中继 8
+      - 新加坡标准 IEPL 中继 1
+      - 新加坡标准 IEPL 中继 2
+      - 新加坡标准 IEPL 中继 3
+      - 新加坡标准 IEPL 中继 4
+      - 新加坡标准 IEPL 中继 5
+      - 新加坡标准 IEPL 中继 6
+      - 新加坡标准 IEPL 中继 7
+      - 新加坡标准 IEPL 中继 8
+      - 台湾标准 IEPL 中继 1
+      - 台湾标准 IEPL 中继 2
+      - 台湾标准 IEPL 中继 3
+      - 美国标准 IEPL 中继 1
+      - 美国标准 IEPL 中继 2
+      - 美国标准 IEPL 中继 3
+      - 美国标准 IEPL 中继 4
+      - 美国标准 IEPL 中继 5
+      - 美国标准 IEPL 中继 6
+      - 美国标准 IEPL 中继 7
+      - 美国标准 IEPL 中继 8
+      - 摩尔多瓦标准 IEPL 中继 1
+      - 乌克兰标准 IEPL 中继 1
+      - 意大利标准 IEPL 中继 1
+      - 匈牙利标准 IEPL 中继 1
+      - 西班牙标准 IEPL 中继 1
+      - 土耳其标准 IEPL 中继 1
+      - 德国标准 IEPL 中继 1
+      - 德国标准 IEPL 中继 2
+      - 英国标准 IEPL 中继 1
+      - 英国标准 IEPL 中继 2
+      - 荷兰标准 IEPL 中继 1
+      - 荷兰标准 IEPL 中继 2
+      - 法国标准 IEPL 中继 1
+      - 法国标准 IEPL 中继 2
+      - 加拿大标准 IEPL 中继 1
+      - 加拿大标准 IEPL 中继 2
+      - 阿根廷标准 IEPL 中继 1
+      - 巴西标准 IEPL 中继 1
+      - 智利标准 IEPL 中继 1
+      - 澳大利亚标准 IEPL 中继 1
+      - 新西兰标准 IEPL 中继 1
+      - 韩国标准 IEPL 中继 1
+      - 韩国标准 IEPL 中继 2
+      - 印尼标准 IEPL 中继 1
+      - 泰国标准 IEPL 中继 1
+      - 越南标准 IEPL 中继 1
+      - 印度标准 IEPL 中继 1
+      - 巴基斯坦标准 IEPL 中继 1
+      - 以色列标准 IEPL 中继 1
+      - 阿联酋标准 IEPL 中继 1
+      - 菲律宾标准 IEPL 中继 1
+      - 马来西亚标准 IEPL 中继 1
+      - 埃及标准 IEPL 中继 1
+      - Australia Sydney Mascot EQSY1 25GE0/0/0 DELLR650 F01
+      - Australia Sydney Mascot EQSY1 25GE0/0/1 DELLR650 F02
+      - Australia Sydney Mascot EQSY1 25GE0/0/2 DELLR650 F03
+      - Australia Sydney Mascot EQSY1 25GE0/0/3 DELLR650 F04
+      - Australia Sydney Mascot EQSY1 25GE0/0/4 DELLR650 F05
+      - Australia Sydney Mascot EQSY1 25GE0/0/5 DELLR650 F06
+      - Australia Sydney Mascot EQSY1 25GE0/0/6 DELLR650 F07
+      - Australia Sydney Mascot EQSY1 25GE0/0/7 DELLR650 F08
+      - Australia Sydney Mascot EQSY1 25GE0/0/8 DELLR650 F09
+      - Australia Sydney Mascot EQSY1 25GE0/0/8 DELLR650 F10
+      - Canada Quebec Montreal Beauharnois 10GE0/0/23 F01
+      - Canada Quebec Montreal Beauharnois 10GE0/0/24 DELLR650 F02
+      - Canada Quebec Montreal Beauharnois 10GE0/0/25 DELLR650 F03
+      - Canada Quebec Montreal Beauharnois 10GE0/0/26DELLR6515 F04
+      - Canada Quebec Montreal Beauharnois 10GE0/0/27 DELLR6515 F05
+      - Canada Quebec Montreal Beauharnois 10GE0/0/28 DELLR6515 F06
+      - Canada Quebec Montreal Beauharnois 10GE0/0/29 DELLR6525 F07
+      - Canada Quebec Montreal Beauharnois 10GE0/0/30 DELLR650 F08
+      - Canada Quebec Montreal Beauharnois 10GE0/0/31 DELLR6615 F09
+      - Canada Quebec Montreal Beauharnois 10GE0/0/32 DELLR6515 F10
+      - French Hauts-de-France Gravelines 25GE0/0/10 DELLR640 F08
+      - French Hauts-de-France Gravelines 25GE0/0/11 DELLR640 F09
+      - French Hauts-de-France Gravelines 25GE0/0/12 DELLR640 F10
+      - French Hauts-de-France Gravelines 25GE0/0/3 DELLR640 F01
+      - French Hauts-de-France Gravelines 25GE0/0/4 DELLR640 F02
+      - French Hauts-de-France Gravelines 25GE0/0/5 DELLR640 F03
+      - French Hauts-de-France Gravelines 25GE0/0/6 DELLR640 F04
+      - French Hauts-de-France Gravelines 25GE0/0/7 DELLR640 F05
+      - French Hauts-de-France Gravelines 25GE0/0/8 DELLR640 F06
+      - French Hauts-de-France Gravelines 25GE0/0/9 DELLR640 F07
+      - German Hessen Limburg an der Lahn 10GE0/0/10 DELLR650 F02
+      - German Hessen Limburg an der Lahn 10GE0/0/11 DELLR650 F03
+      - German Hessen Limburg an der Lahn 10GE0/0/12 DELLR650 F04
+      - German Hessen Limburg an der Lahn 10GE0/0/13 DELLR650 F05
+      - German Hessen Limburg an der Lahn 10GE0/0/14 DELLR650 F06
+      - German Hessen Limburg an der Lahn 10GE0/0/15 DELLR650 F07
+      - German Hessen Limburg an der Lahn 10GE0/0/16 DELLR650 F08
+      - German Hessen Limburg an der Lahn 10GE0/0/17 DELLR650 F09
+      - German Hessen Limburg an der Lahn 10GE0/0/18 DELLR650 F10
+      - German Hessen Limburg an der Lahn 10GE0/0/9 DELLR650 F01
+      - Hong Kong Chai Wan MEGA-i 10GE0/0/23 DELLR6515 F39
+      - Hong Kong Chai Wan MEGA-i 10GE0/0/27 DELLR640 F40
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/0 DELLR650 F31
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/1 DELLR650 F32
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/2 DELLR650 F33
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/3 DELLR650 F34
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/4 DELLR650 F35
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/5 DELLR650 F36
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/6 DELLR650 F37
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/7 DELLR650 F38
+      - Hong Kong Sha Tin EQHK4 25GE0/0/13 DELLR660 F21
+      - Hong Kong Sha Tin EQHK4 25GE0/0/14 DELLR660 F22
+      - Hong Kong Sha Tin EQHK4 25GE0/0/15 DELLR660 F23
+      - Hong Kong Sha Tin EQHK4 25GE0/0/16 DELLR660 F24
+      - Hong Kong Sha Tin EQHK4 25GE0/0/17 DELLR660 F25
+      - Hong Kong Sha Tin EQHK4 25GE0/0/18 DELLR660 F26
+      - Hong Kong Sha Tin EQHK4 25GE0/0/19 DELLR660 F27
+      - Hong Kong Sha Tin EQHK4 25GE0/0/20 DELLR660 F28
+      - Hong Kong Sha Tin EQHK4 25GE0/0/21 DELLR660 F29
+      - Hong Kong Sha Tin EQHK4 25GE0/0/22 DELLR660 F30
+      - Hong Kong Sha Tin EQHK4 40GE0/0/0 DELLR650 F05
+      - Hong Kong Sha Tin EQHK4 40GE0/0/1 DELLR650 F06
+      - Hong Kong Sha Tin EQHK4 40GE0/0/2 DELLR650 F07
+      - Hong Kong Sha Tin EQHK4 40GE0/0/3 DELLR650 F08
+      - Hong Kong Sha Tin EQHK4 40GE0/0/4 DELLR650 F09
+      - Hong Kong Sha Tin EQHK4 40GE0/0/5 DELLR650 F10
+      - Hong Kong Sha Tin EQHK4 40GE0/0/6 DELLR650 F11
+      - Hong Kong Sha Tin EQHK4 40GE0/0/7 DELLR650 F12
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/0 DELLR660  F01
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/1 DELLR660 F02
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/2 DELLR6625 F03
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/3 DELLR6615 F04
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/10 DELLR6515 F13
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/11 DELLR6515 F14
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/12 DELLR650 F15
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/13 DELLR650 F16
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/14 DELLR6515 F17
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/15 DELLR6515 F18
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/16 DELLR6515 F19
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/17 DELLR6515 F20
+      - India Mumbai Andheri East EQMB1 10GE0/0/0 DELLR630 F01
+      - India Mumbai Andheri East EQMB1 10GE0/0/1 DELLR630 F02
+      - India Mumbai Andheri East EQMB1 10GE0/0/2 DELLR630 F03
+      - India Mumbai Andheri East EQMB1 10GE0/0/3 DELLR620 F04
+      - India Mumbai Andheri East EQMB1 10GE0/0/4 DELLR640 F05
+      - India Mumbai Andheri East EQMB1 10GE0/0/5 DELLR650 F06
+      - India Mumbai Andheri East EQMB1 10GE0/0/6 DELLR630 F07
+      - India Mumbai Andheri East EQMB1 10GE0/0/7 DELLR630 F08
+      - India Mumbai Andheri East EQMB1 10GE0/0/8 DELLR630 F09
+      - Japan Osaka Nishi Ward EQOS1 25GE0/0/10 DELLR650 F19
+      - Japan Osaka Nishi Ward EQOS1 25GE0/0/15 DELLR650 F20
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/0 DELLR6515 F15
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/1 DELLR650 F16
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/2 DELLR660 F17
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/3 DELLR650 F18
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/0 DELLR660 F09
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/1 DELLR660 F10
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/2 DELLR650 F11
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/3 DELLR660 F12
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/4 DELLR660 F13
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/5 DELLR660 F14
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/0 DELLR660 F01
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/1 DELLR660 F02
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/2 DELLR660 F03
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/3 DELLR660 F04
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/0 DELLR650 F05
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/1 DELLR650 F06
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/2 DELLR650 F07
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/3 DELLR650 F08
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/2 DELLR630 F03
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/3 DELLR630 F04
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/4 DELLR620 F05
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/5 DELLR620 F06
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/6 DELLR620 F07
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/7 DELLR620 F08
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/8 DELLR620 F09
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/9 DELLR620 F10
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/0 DELLR620 F01
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/1 DELLR620 F02
+      - Singapore Central Queenstown EQSG1 100GE0/0/0 DELLR650 F01
+      - Singapore Central Queenstown EQSG1 100GE0/0/1 DELLR650 F02
+      - Singapore Central Queenstown EQSG1 100GE0/0/2 DELLR650 F03
+      - Singapore Central Queenstown EQSG1 100GE0/0/3 DELLR650 F04
+      - Singapore Central Queenstown EQSG1 100GE0/0/4 DELLR660 F05
+      - Singapore Central Queenstown EQSG1 100GE0/0/5 DELLR660 F06
+      - Singapore Central Queenstown EQSG1 100GE0/0/6 DELLR650 F07
+      - Singapore Central Queenstown EQSG1 100GE0/0/7 DELLR650 F08
+      - Singapore Central Queenstown EQSG1 100GE0/0/8 DELLR660 F09
+      - Singapore Central Queenstown EQSG1 100GE0/0/9 DELLR660 F10
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/0 DELLR650 F01
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/1 DELLR650 F02
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/2 DELLR650 F03
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/3 DELLR650 F04
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/4 DELLR650 F05
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/5 DELLR650 F06
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/6 DELLR650 F07
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/7 DELLR6515 F08
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/8 DELLR6515 F09
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/9 DELLR6515 F10
+      - Taiwan Hsinchu Zhubei 1GE0/0/0 DL360G10 F17
+      - Taiwan Hsinchu Zhubei 1GE0/0/1 DL360G10 F18
+      - Taiwan Hsinchu Zhubei 1GE0/0/2 DL360G10 F19
+      - Taiwan Hsinchu Zhubei 1GE0/0/3 DL360G10 F20
+      - Taiwan New Taipei Xinzhuang 10GE0/0/0 DELLR640 F01
+      - Taiwan New Taipei Xinzhuang 10GE0/0/1 DELLR650 F02
+      - Taiwan New Taipei Xinzhuang 10GE0/0/2 DELLR650 F03
+      - Taiwan New Taipei Xinzhuang 10GE0/0/3 DELLR650 F04
+      - Taiwan Taipei Xinyi 10GE0/0/0 DELLR640 F05
+      - Taiwan Taipei Xinyi 10GE0/0/1 DELLR640 F06
+      - Taiwan Taipei Xinyi 10GE0/0/2 DELLC6520#1 F07
+      - Taiwan Taipei Xinyi 10GE0/0/3 DELLC6520#2 F08
+      - Taiwan Taipei Xinyi 10GE0/0/4 DELLC6520#3 F09
+      - Taiwan Taipei Xinyi 10GE0/0/5 DELLC6520#4 F10
+      - Taiwan Zhongli Renmei 10GE0/0/0 DL360G11 F11
+      - Taiwan Zhongli Renmei 10GE0/0/1 DL360G11 F12
+      - Taiwan Zhongli Renmei 10GE0/0/2 DL360G11 F13
+      - Taiwan Zhongli Renmei 10GE0/0/3 DL360G11 F14
+      - Taiwan Zhongli Renmei 10GE0/0/4 DL360G11 F15
+      - Taiwan Zhongli Renmei 10GE0/0/5 DL360G11 F16
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/10 DELLR640 F01
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/11 DELLR640 F02
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/12 DELLR640 F03
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/13 DELLR640 F04
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/14 DELLR640 F05
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/15 DELLR650 F06
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/16 DELLR650 F07
+      - United Kingdom London Borough of Bexley Erith 25GE0/0/2 DELLR650 F08
+      - United Kingdom London Borough of Bexley Erith 25GE0/0/3 DELLR6515 F09
+      - United Kingdom London Borough of Bexley Erith 25GE0/0/4 DELLR6515 F10
+      - United States Washington Seattle EQSE2 100GE0/0/0 DELLR660 F01
+      - United States Washington Seattle EQSE2 100GE0/0/1 DELLR660 F02
+      - United States Washington Seattle EQSE2 100GE0/0/2 DELLR660 F03
+      - United States Washington Seattle EQSE2 100GE0/0/3 DELLR660 F04
+      - United States Washington Seattle EQSE2 100GE0/0/4 DELLR660 F05
+      - United States Washington Seattle EQSE2 100GE0/0/5 DELLR660 F06
+      - United States Washington Seattle EQSE2 100GE0/0/6 DELLR650 F07
+      - United States Washington Seattle EQSE2 100GE0/0/7 DELLR650 F08
+      - United States Washington Seattle EQSE2 100GE0/0/8 DELLR650 F09
+      - United States Washington Seattle EQSE2 100GE0/0/9 DELLR650 F10
+  - name: 🇭🇰 香港节点
+    type: select
+    proxies:
+      - Hong Kong-01
+      - Hong Kong-02
+      - Hong Kong-03
+      - Hong Kong-04
+      - Hong Kong-05
+      - Hong Kong-06
+      - Hong Kong-07
+      - Hong Kong-08
+      - Hong Kong-09
+      - Hong Kong-10
+      - Hong Kong-11
+      - Hong Kong-12
+      - Hong Kong-13
+      - Hong Kong-14
+      - Hong Kong-15
+      - Hong Kong-16
+      - Hong Kong-17
+      - Hong Kong-18
+      - Hong Kong-19
+      - Hong Kong-20
+      - 香港实验性 IEPL 中继 1
+      - 香港高级 IEPL 中继 1
+      - 香港高级 IEPL 中继 2
+      - 香港高级 IEPL 中继 3
+      - 香港标准 IEPL 中继 1
+      - 香港标准 IEPL 中继 2
+      - 香港标准 IEPL 中继 3
+      - 香港标准 IEPL 中继 4
+      - 香港标准 IEPL 中继 5
+      - 香港标准 IEPL 中继 6
+      - 香港标准 IEPL 中继 7
+      - 香港标准 IEPL 中继 8
+      - Hong Kong Chai Wan MEGA-i 10GE0/0/23 DELLR6515 F39
+      - Hong Kong Chai Wan MEGA-i 10GE0/0/27 DELLR640 F40
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/0 DELLR650 F31
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/1 DELLR650 F32
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/2 DELLR650 F33
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/3 DELLR650 F34
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/4 DELLR650 F35
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/5 DELLR650 F36
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/6 DELLR650 F37
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/7 DELLR650 F38
+      - Hong Kong Sha Tin EQHK4 25GE0/0/13 DELLR660 F21
+      - Hong Kong Sha Tin EQHK4 25GE0/0/14 DELLR660 F22
+      - Hong Kong Sha Tin EQHK4 25GE0/0/15 DELLR660 F23
+      - Hong Kong Sha Tin EQHK4 25GE0/0/16 DELLR660 F24
+      - Hong Kong Sha Tin EQHK4 25GE0/0/17 DELLR660 F25
+      - Hong Kong Sha Tin EQHK4 25GE0/0/18 DELLR660 F26
+      - Hong Kong Sha Tin EQHK4 25GE0/0/19 DELLR660 F27
+      - Hong Kong Sha Tin EQHK4 25GE0/0/20 DELLR660 F28
+      - Hong Kong Sha Tin EQHK4 25GE0/0/21 DELLR660 F29
+      - Hong Kong Sha Tin EQHK4 25GE0/0/22 DELLR660 F30
+      - Hong Kong Sha Tin EQHK4 40GE0/0/0 DELLR650 F05
+      - Hong Kong Sha Tin EQHK4 40GE0/0/1 DELLR650 F06
+      - Hong Kong Sha Tin EQHK4 40GE0/0/2 DELLR650 F07
+      - Hong Kong Sha Tin EQHK4 40GE0/0/3 DELLR650 F08
+      - Hong Kong Sha Tin EQHK4 40GE0/0/4 DELLR650 F09
+      - Hong Kong Sha Tin EQHK4 40GE0/0/5 DELLR650 F10
+      - Hong Kong Sha Tin EQHK4 40GE0/0/6 DELLR650 F11
+      - Hong Kong Sha Tin EQHK4 40GE0/0/7 DELLR650 F12
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/0 DELLR660  F01
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/1 DELLR660 F02
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/2 DELLR6625 F03
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/3 DELLR6615 F04
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/10 DELLR6515 F13
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/11 DELLR6515 F14
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/12 DELLR650 F15
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/13 DELLR650 F16
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/14 DELLR6515 F17
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/15 DELLR6515 F18
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/16 DELLR6515 F19
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/17 DELLR6515 F20
+  - name: 🇯🇵 日本节点
+    type: select
+    proxies:
+      - Japan-01
+      - Japan-02
+      - Japan-03
+      - Japan-04
+      - Japan-05
+      - Japan-06
+      - Japan-07
+      - Japan-08
+      - Japan-09
+      - Japan-10
+      - 日本实验性 IEPL 中继 1
+      - 日本高级 IEPL 中继 1
+      - 日本高级 IEPL 中继 2
+      - 日本高级 IEPL 中继 3
+      - 日本标准 IEPL 中继 1
+      - 日本标准 IEPL 中继 2
+      - 日本标准 IEPL 中继 3
+      - 日本标准 IEPL 中继 4
+      - 日本标准 IEPL 中继 5
+      - 日本标准 IEPL 中继 6
+      - 日本标准 IEPL 中继 7
+      - 日本标准 IEPL 中继 8
+      - Japan Osaka Nishi Ward EQOS1 25GE0/0/10 DELLR650 F19
+      - Japan Osaka Nishi Ward EQOS1 25GE0/0/15 DELLR650 F20
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/0 DELLR6515 F15
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/1 DELLR650 F16
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/2 DELLR660 F17
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/3 DELLR650 F18
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/0 DELLR660 F09
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/1 DELLR660 F10
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/2 DELLR650 F11
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/3 DELLR660 F12
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/4 DELLR660 F13
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/5 DELLR660 F14
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/0 DELLR660 F01
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/1 DELLR660 F02
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/2 DELLR660 F03
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/3 DELLR660 F04
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/0 DELLR650 F05
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/1 DELLR650 F06
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/2 DELLR650 F07
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/3 DELLR650 F08
+  - name: 🇸🇬 坡县节点
+    type: select
+    proxies:
+      - Singapore-01
+      - Singapore-02
+      - Singapore-03
+      - Singapore-04
+      - Singapore-05
+      - Singapore-06
+      - Singapore-07
+      - Singapore-08
+      - Singapore-09
+      - Singapore-10
+      - 新加坡实验性 IEPL 中继 1
+      - 新加坡高级 IEPL 中继 1
+      - 新加坡高级 IEPL 中继 2
+      - 新加坡高级 IEPL 中继 3
+      - 新加坡标准 IEPL 中继 1
+      - 新加坡标准 IEPL 中继 2
+      - 新加坡标准 IEPL 中继 3
+      - 新加坡标准 IEPL 中继 4
+      - 新加坡标准 IEPL 中继 5
+      - 新加坡标准 IEPL 中继 6
+      - 新加坡标准 IEPL 中继 7
+      - 新加坡标准 IEPL 中继 8
+      - Singapore Central Queenstown EQSG1 100GE0/0/0 DELLR650 F01
+      - Singapore Central Queenstown EQSG1 100GE0/0/1 DELLR650 F02
+      - Singapore Central Queenstown EQSG1 100GE0/0/2 DELLR650 F03
+      - Singapore Central Queenstown EQSG1 100GE0/0/3 DELLR650 F04
+      - Singapore Central Queenstown EQSG1 100GE0/0/4 DELLR660 F05
+      - Singapore Central Queenstown EQSG1 100GE0/0/5 DELLR660 F06
+      - Singapore Central Queenstown EQSG1 100GE0/0/6 DELLR650 F07
+      - Singapore Central Queenstown EQSG1 100GE0/0/7 DELLR650 F08
+      - Singapore Central Queenstown EQSG1 100GE0/0/8 DELLR660 F09
+      - Singapore Central Queenstown EQSG1 100GE0/0/9 DELLR660 F10
+  - name: TW 台湾节点
+    type: select
+    proxies:
+      - Taiwan-01
+      - Taiwan-02
+      - Taiwan-03
+      - Taiwan-04
+      - Taiwan-05
+      - Taiwan-06
+      - Taiwan-07
+      - Taiwan-08
+      - Taiwan-09
+      - Taiwan-10
+      - 台湾高级 IEPL 中继 1
+      - 台湾高级 IEPL 中继 2
+      - 台湾高级 IEPL 中继 3
+      - 台湾标准 IEPL 中继 1
+      - 台湾标准 IEPL 中继 2
+      - 台湾标准 IEPL 中继 3
+      - Taiwan Hsinchu Zhubei 1GE0/0/0 DL360G10 F17
+      - Taiwan Hsinchu Zhubei 1GE0/0/1 DL360G10 F18
+      - Taiwan Hsinchu Zhubei 1GE0/0/2 DL360G10 F19
+      - Taiwan Hsinchu Zhubei 1GE0/0/3 DL360G10 F20
+      - Taiwan New Taipei Xinzhuang 10GE0/0/0 DELLR640 F01
+      - Taiwan New Taipei Xinzhuang 10GE0/0/1 DELLR650 F02
+      - Taiwan New Taipei Xinzhuang 10GE0/0/2 DELLR650 F03
+      - Taiwan New Taipei Xinzhuang 10GE0/0/3 DELLR650 F04
+      - Taiwan Taipei Xinyi 10GE0/0/0 DELLR640 F05
+      - Taiwan Taipei Xinyi 10GE0/0/1 DELLR640 F06
+      - Taiwan Taipei Xinyi 10GE0/0/2 DELLC6520#1 F07
+      - Taiwan Taipei Xinyi 10GE0/0/3 DELLC6520#2 F08
+      - Taiwan Taipei Xinyi 10GE0/0/4 DELLC6520#3 F09
+      - Taiwan Taipei Xinyi 10GE0/0/5 DELLC6520#4 F10
+      - Taiwan Zhongli Renmei 10GE0/0/0 DL360G11 F11
+      - Taiwan Zhongli Renmei 10GE0/0/1 DL360G11 F12
+      - Taiwan Zhongli Renmei 10GE0/0/2 DL360G11 F13
+      - Taiwan Zhongli Renmei 10GE0/0/3 DL360G11 F14
+      - Taiwan Zhongli Renmei 10GE0/0/4 DL360G11 F15
+      - Taiwan Zhongli Renmei 10GE0/0/5 DL360G11 F16
+  - name: KR 韩国节点
+    type: select
+    proxies:
+      - 韩国标准 IEPL 中继 1
+      - 韩国标准 IEPL 中继 2
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/0 DELLR650 F01
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/1 DELLR650 F02
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/2 DELLR650 F03
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/3 DELLR650 F04
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/4 DELLR650 F05
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/5 DELLR650 F06
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/6 DELLR650 F07
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/7 DELLR6515 F08
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/8 DELLR6515 F09
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/9 DELLR6515 F10
+  - name: 🇺🇲 美国节点
+    type: select
+    proxies:
+      - USA-01
+      - USA-02
+      - USA-03
+      - USA-04
+      - USA-05
+      - USA-06
+      - USA-07
+      - USA-08
+      - USA-09
+      - USA-10
+      - 美国实验性 IEPL 中继 1
+      - 美国高级 IEPL 中继 1
+      - 美国高级 IEPL 中继 2
+      - 美国高级 IEPL 中继 3
+      - 美国标准 IEPL 中继 1
+      - 美国标准 IEPL 中继 2
+      - 美国标准 IEPL 中继 3
+      - 美国标准 IEPL 中继 4
+      - 美国标准 IEPL 中继 5
+      - 美国标准 IEPL 中继 6
+      - 美国标准 IEPL 中继 7
+      - 美国标准 IEPL 中继 8
+      - United States Washington Seattle EQSE2 100GE0/0/0 DELLR660 F01
+      - United States Washington Seattle EQSE2 100GE0/0/1 DELLR660 F02
+      - United States Washington Seattle EQSE2 100GE0/0/2 DELLR660 F03
+      - United States Washington Seattle EQSE2 100GE0/0/3 DELLR660 F04
+      - United States Washington Seattle EQSE2 100GE0/0/4 DELLR660 F05
+      - United States Washington Seattle EQSE2 100GE0/0/5 DELLR660 F06
+      - United States Washington Seattle EQSE2 100GE0/0/6 DELLR650 F07
+      - United States Washington Seattle EQSE2 100GE0/0/7 DELLR650 F08
+      - United States Washington Seattle EQSE2 100GE0/0/8 DELLR650 F09
+      - United States Washington Seattle EQSE2 100GE0/0/9 DELLR650 F10
+  - name: 🌐 其他地区
+    type: select
+    proxies:
+      - UK-01
+      - UK-02
+      - UK-03
+      - UK-04
+      - UK-05
+      - Malaysia-01
+      - Malaysia-02
+      - Malaysia-03
+      - Malaysia-04
+      - Malaysia-05
+      - Turkey-01
+      - Turkey-02
+      - Argentina-01
+      - Argentina-02
+      - 摩尔多瓦标准 IEPL 中继 1
+      - 乌克兰标准 IEPL 中继 1
+      - 意大利标准 IEPL 中继 1
+      - 匈牙利标准 IEPL 中继 1
+      - 西班牙标准 IEPL 中继 1
+      - 土耳其标准 IEPL 中继 1
+      - 德国标准 IEPL 中继 1
+      - 德国标准 IEPL 中继 2
+      - 英国标准 IEPL 中继 1
+      - 英国标准 IEPL 中继 2
+      - 荷兰标准 IEPL 中继 1
+      - 荷兰标准 IEPL 中继 2
+      - 法国标准 IEPL 中继 1
+      - 法国标准 IEPL 中继 2
+      - 加拿大标准 IEPL 中继 1
+      - 加拿大标准 IEPL 中继 2
+      - 阿根廷标准 IEPL 中继 1
+      - 巴西标准 IEPL 中继 1
+      - 智利标准 IEPL 中继 1
+      - 澳大利亚标准 IEPL 中继 1
+      - 新西兰标准 IEPL 中继 1
+      - 印尼标准 IEPL 中继 1
+      - 泰国标准 IEPL 中继 1
+      - 越南标准 IEPL 中继 1
+      - 印度标准 IEPL 中继 1
+      - 巴基斯坦标准 IEPL 中继 1
+      - 以色列标准 IEPL 中继 1
+      - 阿联酋标准 IEPL 中继 1
+      - 菲律宾标准 IEPL 中继 1
+      - 马来西亚标准 IEPL 中继 1
+      - 埃及标准 IEPL 中继 1
+      - Australia Sydney Mascot EQSY1 25GE0/0/0 DELLR650 F01
+      - Australia Sydney Mascot EQSY1 25GE0/0/1 DELLR650 F02
+      - Australia Sydney Mascot EQSY1 25GE0/0/2 DELLR650 F03
+      - Australia Sydney Mascot EQSY1 25GE0/0/3 DELLR650 F04
+      - Australia Sydney Mascot EQSY1 25GE0/0/4 DELLR650 F05
+      - Australia Sydney Mascot EQSY1 25GE0/0/5 DELLR650 F06
+      - Australia Sydney Mascot EQSY1 25GE0/0/6 DELLR650 F07
+      - Australia Sydney Mascot EQSY1 25GE0/0/7 DELLR650 F08
+      - Australia Sydney Mascot EQSY1 25GE0/0/8 DELLR650 F09
+      - Australia Sydney Mascot EQSY1 25GE0/0/8 DELLR650 F10
+      - Canada Quebec Montreal Beauharnois 10GE0/0/23 F01
+      - Canada Quebec Montreal Beauharnois 10GE0/0/24 DELLR650 F02
+      - Canada Quebec Montreal Beauharnois 10GE0/0/25 DELLR650 F03
+      - Canada Quebec Montreal Beauharnois 10GE0/0/26DELLR6515 F04
+      - Canada Quebec Montreal Beauharnois 10GE0/0/27 DELLR6515 F05
+      - Canada Quebec Montreal Beauharnois 10GE0/0/28 DELLR6515 F06
+      - Canada Quebec Montreal Beauharnois 10GE0/0/29 DELLR6525 F07
+      - Canada Quebec Montreal Beauharnois 10GE0/0/30 DELLR650 F08
+      - Canada Quebec Montreal Beauharnois 10GE0/0/31 DELLR6615 F09
+      - Canada Quebec Montreal Beauharnois 10GE0/0/32 DELLR6515 F10
+      - French Hauts-de-France Gravelines 25GE0/0/10 DELLR640 F08
+      - French Hauts-de-France Gravelines 25GE0/0/11 DELLR640 F09
+      - French Hauts-de-France Gravelines 25GE0/0/12 DELLR640 F10
+      - French Hauts-de-France Gravelines 25GE0/0/3 DELLR640 F01
+      - French Hauts-de-France Gravelines 25GE0/0/4 DELLR640 F02
+      - French Hauts-de-France Gravelines 25GE0/0/5 DELLR640 F03
+      - French Hauts-de-France Gravelines 25GE0/0/6 DELLR640 F04
+      - French Hauts-de-France Gravelines 25GE0/0/7 DELLR640 F05
+      - French Hauts-de-France Gravelines 25GE0/0/8 DELLR640 F06
+      - French Hauts-de-France Gravelines 25GE0/0/9 DELLR640 F07
+      - German Hessen Limburg an der Lahn 10GE0/0/10 DELLR650 F02
+      - German Hessen Limburg an der Lahn 10GE0/0/11 DELLR650 F03
+      - German Hessen Limburg an der Lahn 10GE0/0/12 DELLR650 F04
+      - German Hessen Limburg an der Lahn 10GE0/0/13 DELLR650 F05
+      - German Hessen Limburg an der Lahn 10GE0/0/14 DELLR650 F06
+      - German Hessen Limburg an der Lahn 10GE0/0/15 DELLR650 F07
+      - German Hessen Limburg an der Lahn 10GE0/0/16 DELLR650 F08
+      - German Hessen Limburg an der Lahn 10GE0/0/17 DELLR650 F09
+      - German Hessen Limburg an der Lahn 10GE0/0/18 DELLR650 F10
+      - German Hessen Limburg an der Lahn 10GE0/0/9 DELLR650 F01
+      - India Mumbai Andheri East EQMB1 10GE0/0/0 DELLR630 F01
+      - India Mumbai Andheri East EQMB1 10GE0/0/1 DELLR630 F02
+      - India Mumbai Andheri East EQMB1 10GE0/0/2 DELLR630 F03
+      - India Mumbai Andheri East EQMB1 10GE0/0/3 DELLR620 F04
+      - India Mumbai Andheri East EQMB1 10GE0/0/4 DELLR640 F05
+      - India Mumbai Andheri East EQMB1 10GE0/0/5 DELLR650 F06
+      - India Mumbai Andheri East EQMB1 10GE0/0/6 DELLR630 F07
+      - India Mumbai Andheri East EQMB1 10GE0/0/7 DELLR630 F08
+      - India Mumbai Andheri East EQMB1 10GE0/0/8 DELLR630 F09
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/2 DELLR630 F03
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/3 DELLR630 F04
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/4 DELLR620 F05
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/5 DELLR620 F06
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/6 DELLR620 F07
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/7 DELLR620 F08
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/8 DELLR620 F09
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/9 DELLR620 F10
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/0 DELLR620 F01
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/1 DELLR620 F02
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/10 DELLR640 F01
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/11 DELLR640 F02
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/12 DELLR640 F03
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/13 DELLR640 F04
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/14 DELLR640 F05
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/15 DELLR650 F06
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/16 DELLR650 F07
+      - United Kingdom London Borough of Bexley Erith 25GE0/0/2 DELLR650 F08
+      - United Kingdom London Borough of Bexley Erith 25GE0/0/3 DELLR6515 F09
+      - United Kingdom London Borough of Bexley Erith 25GE0/0/4 DELLR6515 F10
+  - name: 🔯 香港故转
+    type: select
+    proxies:
+      - Hong Kong-01
+      - Hong Kong-02
+      - Hong Kong-03
+      - Hong Kong-04
+      - Hong Kong-05
+      - Hong Kong-06
+      - Hong Kong-07
+      - Hong Kong-08
+      - Hong Kong-09
+      - Hong Kong-10
+      - Hong Kong-11
+      - Hong Kong-12
+      - Hong Kong-13
+      - Hong Kong-14
+      - Hong Kong-15
+      - Hong Kong-16
+      - Hong Kong-17
+      - Hong Kong-18
+      - Hong Kong-19
+      - Hong Kong-20
+      - 香港实验性 IEPL 中继 1
+      - 香港高级 IEPL 中继 1
+      - 香港高级 IEPL 中继 2
+      - 香港高级 IEPL 中继 3
+      - 香港标准 IEPL 中继 1
+      - 香港标准 IEPL 中继 2
+      - 香港标准 IEPL 中继 3
+      - 香港标准 IEPL 中继 4
+      - 香港标准 IEPL 中继 5
+      - 香港标准 IEPL 中继 6
+      - 香港标准 IEPL 中继 7
+      - 香港标准 IEPL 中继 8
+      - Hong Kong Chai Wan MEGA-i 10GE0/0/23 DELLR6515 F39
+      - Hong Kong Chai Wan MEGA-i 10GE0/0/27 DELLR640 F40
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/0 DELLR650 F31
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/1 DELLR650 F32
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/2 DELLR650 F33
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/3 DELLR650 F34
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/4 DELLR650 F35
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/5 DELLR650 F36
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/6 DELLR650 F37
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/7 DELLR650 F38
+      - Hong Kong Sha Tin EQHK4 25GE0/0/13 DELLR660 F21
+      - Hong Kong Sha Tin EQHK4 25GE0/0/14 DELLR660 F22
+      - Hong Kong Sha Tin EQHK4 25GE0/0/15 DELLR660 F23
+      - Hong Kong Sha Tin EQHK4 25GE0/0/16 DELLR660 F24
+      - Hong Kong Sha Tin EQHK4 25GE0/0/17 DELLR660 F25
+      - Hong Kong Sha Tin EQHK4 25GE0/0/18 DELLR660 F26
+      - Hong Kong Sha Tin EQHK4 25GE0/0/19 DELLR660 F27
+      - Hong Kong Sha Tin EQHK4 25GE0/0/20 DELLR660 F28
+      - Hong Kong Sha Tin EQHK4 25GE0/0/21 DELLR660 F29
+      - Hong Kong Sha Tin EQHK4 25GE0/0/22 DELLR660 F30
+      - Hong Kong Sha Tin EQHK4 40GE0/0/0 DELLR650 F05
+      - Hong Kong Sha Tin EQHK4 40GE0/0/1 DELLR650 F06
+      - Hong Kong Sha Tin EQHK4 40GE0/0/2 DELLR650 F07
+      - Hong Kong Sha Tin EQHK4 40GE0/0/3 DELLR650 F08
+      - Hong Kong Sha Tin EQHK4 40GE0/0/4 DELLR650 F09
+      - Hong Kong Sha Tin EQHK4 40GE0/0/5 DELLR650 F10
+      - Hong Kong Sha Tin EQHK4 40GE0/0/6 DELLR650 F11
+      - Hong Kong Sha Tin EQHK4 40GE0/0/7 DELLR650 F12
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/0 DELLR660  F01
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/1 DELLR660 F02
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/2 DELLR6625 F03
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/3 DELLR6615 F04
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/10 DELLR6515 F13
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/11 DELLR6515 F14
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/12 DELLR650 F15
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/13 DELLR650 F16
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/14 DELLR6515 F17
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/15 DELLR6515 F18
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/16 DELLR6515 F19
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/17 DELLR6515 F20
+  - name: 🔯 日本故转
+    type: select
+    proxies:
+      - Japan-01
+      - Japan-02
+      - Japan-03
+      - Japan-04
+      - Japan-05
+      - Japan-06
+      - Japan-07
+      - Japan-08
+      - Japan-09
+      - Japan-10
+      - 日本实验性 IEPL 中继 1
+      - 日本高级 IEPL 中继 1
+      - 日本高级 IEPL 中继 2
+      - 日本高级 IEPL 中继 3
+      - 日本标准 IEPL 中继 1
+      - 日本标准 IEPL 中继 2
+      - 日本标准 IEPL 中继 3
+      - 日本标准 IEPL 中继 4
+      - 日本标准 IEPL 中继 5
+      - 日本标准 IEPL 中继 6
+      - 日本标准 IEPL 中继 7
+      - 日本标准 IEPL 中继 8
+      - Japan Osaka Nishi Ward EQOS1 25GE0/0/10 DELLR650 F19
+      - Japan Osaka Nishi Ward EQOS1 25GE0/0/15 DELLR650 F20
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/0 DELLR6515 F15
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/1 DELLR650 F16
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/2 DELLR660 F17
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/3 DELLR650 F18
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/0 DELLR660 F09
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/1 DELLR660 F10
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/2 DELLR650 F11
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/3 DELLR660 F12
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/4 DELLR660 F13
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/5 DELLR660 F14
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/0 DELLR660 F01
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/1 DELLR660 F02
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/2 DELLR660 F03
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/3 DELLR660 F04
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/0 DELLR650 F05
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/1 DELLR650 F06
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/2 DELLR650 F07
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/3 DELLR650 F08
+  - name: 🔯 坡县故转
+    type: select
+    proxies:
+      - Singapore-01
+      - Singapore-02
+      - Singapore-03
+      - Singapore-04
+      - Singapore-05
+      - Singapore-06
+      - Singapore-07
+      - Singapore-08
+      - Singapore-09
+      - Singapore-10
+      - 新加坡实验性 IEPL 中继 1
+      - 新加坡高级 IEPL 中继 1
+      - 新加坡高级 IEPL 中继 2
+      - 新加坡高级 IEPL 中继 3
+      - 新加坡标准 IEPL 中继 1
+      - 新加坡标准 IEPL 中继 2
+      - 新加坡标准 IEPL 中继 3
+      - 新加坡标准 IEPL 中继 4
+      - 新加坡标准 IEPL 中继 5
+      - 新加坡标准 IEPL 中继 6
+      - 新加坡标准 IEPL 中继 7
+      - 新加坡标准 IEPL 中继 8
+      - Singapore Central Queenstown EQSG1 100GE0/0/0 DELLR650 F01
+      - Singapore Central Queenstown EQSG1 100GE0/0/1 DELLR650 F02
+      - Singapore Central Queenstown EQSG1 100GE0/0/2 DELLR650 F03
+      - Singapore Central Queenstown EQSG1 100GE0/0/3 DELLR650 F04
+      - Singapore Central Queenstown EQSG1 100GE0/0/4 DELLR660 F05
+      - Singapore Central Queenstown EQSG1 100GE0/0/5 DELLR660 F06
+      - Singapore Central Queenstown EQSG1 100GE0/0/6 DELLR650 F07
+      - Singapore Central Queenstown EQSG1 100GE0/0/7 DELLR650 F08
+      - Singapore Central Queenstown EQSG1 100GE0/0/8 DELLR660 F09
+      - Singapore Central Queenstown EQSG1 100GE0/0/9 DELLR660 F10
+  - name: ⭐ 香港故转
+    type: select
+    proxies:
+      - 香港实验性 IEPL 中继 1
+      - 香港高级 IEPL 中继 1
+      - 香港高级 IEPL 中继 2
+      - 香港高级 IEPL 中继 3
+      - 香港标准 IEPL 中继 1
+      - 香港标准 IEPL 中继 2
+      - 香港标准 IEPL 中继 3
+      - 香港标准 IEPL 中继 4
+      - 香港标准 IEPL 中继 5
+      - 香港标准 IEPL 中继 6
+      - 香港标准 IEPL 中继 7
+      - 香港标准 IEPL 中继 8
+      - Hong Kong Chai Wan MEGA-i 10GE0/0/23 DELLR6515 F39
+      - Hong Kong Chai Wan MEGA-i 10GE0/0/27 DELLR640 F40
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/0 DELLR650 F31
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/1 DELLR650 F32
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/2 DELLR650 F33
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/3 DELLR650 F34
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/4 DELLR650 F35
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/5 DELLR650 F36
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/6 DELLR650 F37
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/7 DELLR650 F38
+      - Hong Kong Sha Tin EQHK4 25GE0/0/13 DELLR660 F21
+      - Hong Kong Sha Tin EQHK4 25GE0/0/14 DELLR660 F22
+      - Hong Kong Sha Tin EQHK4 25GE0/0/15 DELLR660 F23
+      - Hong Kong Sha Tin EQHK4 25GE0/0/16 DELLR660 F24
+      - Hong Kong Sha Tin EQHK4 25GE0/0/17 DELLR660 F25
+      - Hong Kong Sha Tin EQHK4 25GE0/0/18 DELLR660 F26
+      - Hong Kong Sha Tin EQHK4 25GE0/0/19 DELLR660 F27
+      - Hong Kong Sha Tin EQHK4 25GE0/0/20 DELLR660 F28
+      - Hong Kong Sha Tin EQHK4 25GE0/0/21 DELLR660 F29
+      - Hong Kong Sha Tin EQHK4 25GE0/0/22 DELLR660 F30
+      - Hong Kong Sha Tin EQHK4 40GE0/0/0 DELLR650 F05
+      - Hong Kong Sha Tin EQHK4 40GE0/0/1 DELLR650 F06
+      - Hong Kong Sha Tin EQHK4 40GE0/0/2 DELLR650 F07
+      - Hong Kong Sha Tin EQHK4 40GE0/0/3 DELLR650 F08
+      - Hong Kong Sha Tin EQHK4 40GE0/0/4 DELLR650 F09
+      - Hong Kong Sha Tin EQHK4 40GE0/0/5 DELLR650 F10
+      - Hong Kong Sha Tin EQHK4 40GE0/0/6 DELLR650 F11
+      - Hong Kong Sha Tin EQHK4 40GE0/0/7 DELLR650 F12
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/0 DELLR660  F01
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/1 DELLR660 F02
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/2 DELLR6625 F03
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/3 DELLR6615 F04
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/10 DELLR6515 F13
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/11 DELLR6515 F14
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/12 DELLR650 F15
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/13 DELLR650 F16
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/14 DELLR6515 F17
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/15 DELLR6515 F18
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/16 DELLR6515 F19
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/17 DELLR6515 F20
+  - name: ⭐ 日本故转
+    type: select
+    proxies:
+      - 日本实验性 IEPL 中继 1
+      - 日本高级 IEPL 中继 1
+      - 日本高级 IEPL 中继 2
+      - 日本高级 IEPL 中继 3
+      - 日本标准 IEPL 中继 1
+      - 日本标准 IEPL 中继 2
+      - 日本标准 IEPL 中继 3
+      - 日本标准 IEPL 中继 4
+      - 日本标准 IEPL 中继 5
+      - 日本标准 IEPL 中继 6
+      - 日本标准 IEPL 中继 7
+      - 日本标准 IEPL 中继 8
+      - Japan Osaka Nishi Ward EQOS1 25GE0/0/10 DELLR650 F19
+      - Japan Osaka Nishi Ward EQOS1 25GE0/0/15 DELLR650 F20
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/0 DELLR6515 F15
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/1 DELLR650 F16
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/2 DELLR660 F17
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/3 DELLR650 F18
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/0 DELLR660 F09
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/1 DELLR660 F10
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/2 DELLR650 F11
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/3 DELLR660 F12
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/4 DELLR660 F13
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/5 DELLR660 F14
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/0 DELLR660 F01
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/1 DELLR660 F02
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/2 DELLR660 F03
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/3 DELLR660 F04
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/0 DELLR650 F05
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/1 DELLR650 F06
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/2 DELLR650 F07
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/3 DELLR650 F08
+  - name: ⭐ 坡县故转
+    type: select
+    proxies:
+      - 新加坡实验性 IEPL 中继 1
+      - 新加坡高级 IEPL 中继 1
+      - 新加坡高级 IEPL 中继 2
+      - 新加坡高级 IEPL 中继 3
+      - 新加坡标准 IEPL 中继 1
+      - 新加坡标准 IEPL 中继 2
+      - 新加坡标准 IEPL 中继 3
+      - 新加坡标准 IEPL 中继 4
+      - 新加坡标准 IEPL 中继 5
+      - 新加坡标准 IEPL 中继 6
+      - 新加坡标准 IEPL 中继 7
+      - 新加坡标准 IEPL 中继 8
+      - Singapore Central Queenstown EQSG1 100GE0/0/0 DELLR650 F01
+      - Singapore Central Queenstown EQSG1 100GE0/0/1 DELLR650 F02
+      - Singapore Central Queenstown EQSG1 100GE0/0/2 DELLR650 F03
+      - Singapore Central Queenstown EQSG1 100GE0/0/3 DELLR650 F04
+      - Singapore Central Queenstown EQSG1 100GE0/0/4 DELLR660 F05
+      - Singapore Central Queenstown EQSG1 100GE0/0/5 DELLR660 F06
+      - Singapore Central Queenstown EQSG1 100GE0/0/6 DELLR650 F07
+      - Singapore Central Queenstown EQSG1 100GE0/0/7 DELLR650 F08
+      - Singapore Central Queenstown EQSG1 100GE0/0/8 DELLR660 F09
+      - Singapore Central Queenstown EQSG1 100GE0/0/9 DELLR660 F10
+  - name: 🍃 香港均衡
+    type: select
+    proxies:
+      - Hong Kong-01
+      - Hong Kong-02
+      - Hong Kong-03
+      - Hong Kong-04
+      - Hong Kong-05
+      - Hong Kong-06
+      - Hong Kong-07
+      - Hong Kong-08
+      - Hong Kong-09
+      - Hong Kong-10
+      - Hong Kong-11
+      - Hong Kong-12
+      - Hong Kong-13
+      - Hong Kong-14
+      - Hong Kong-15
+      - Hong Kong-16
+      - Hong Kong-17
+      - Hong Kong-18
+      - Hong Kong-19
+      - Hong Kong-20
+      - 香港实验性 IEPL 中继 1
+      - 香港高级 IEPL 中继 1
+      - 香港高级 IEPL 中继 2
+      - 香港高级 IEPL 中继 3
+      - 香港标准 IEPL 中继 1
+      - 香港标准 IEPL 中继 2
+      - 香港标准 IEPL 中继 3
+      - 香港标准 IEPL 中继 4
+      - 香港标准 IEPL 中继 5
+      - 香港标准 IEPL 中继 6
+      - 香港标准 IEPL 中继 7
+      - 香港标准 IEPL 中继 8
+      - Hong Kong Chai Wan MEGA-i 10GE0/0/23 DELLR6515 F39
+      - Hong Kong Chai Wan MEGA-i 10GE0/0/27 DELLR640 F40
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/0 DELLR650 F31
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/1 DELLR650 F32
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/2 DELLR650 F33
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/3 DELLR650 F34
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/4 DELLR650 F35
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/5 DELLR650 F36
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/6 DELLR650 F37
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/7 DELLR650 F38
+      - Hong Kong Sha Tin EQHK4 25GE0/0/13 DELLR660 F21
+      - Hong Kong Sha Tin EQHK4 25GE0/0/14 DELLR660 F22
+      - Hong Kong Sha Tin EQHK4 25GE0/0/15 DELLR660 F23
+      - Hong Kong Sha Tin EQHK4 25GE0/0/16 DELLR660 F24
+      - Hong Kong Sha Tin EQHK4 25GE0/0/17 DELLR660 F25
+      - Hong Kong Sha Tin EQHK4 25GE0/0/18 DELLR660 F26
+      - Hong Kong Sha Tin EQHK4 25GE0/0/19 DELLR660 F27
+      - Hong Kong Sha Tin EQHK4 25GE0/0/20 DELLR660 F28
+      - Hong Kong Sha Tin EQHK4 25GE0/0/21 DELLR660 F29
+      - Hong Kong Sha Tin EQHK4 25GE0/0/22 DELLR660 F30
+      - Hong Kong Sha Tin EQHK4 40GE0/0/0 DELLR650 F05
+      - Hong Kong Sha Tin EQHK4 40GE0/0/1 DELLR650 F06
+      - Hong Kong Sha Tin EQHK4 40GE0/0/2 DELLR650 F07
+      - Hong Kong Sha Tin EQHK4 40GE0/0/3 DELLR650 F08
+      - Hong Kong Sha Tin EQHK4 40GE0/0/4 DELLR650 F09
+      - Hong Kong Sha Tin EQHK4 40GE0/0/5 DELLR650 F10
+      - Hong Kong Sha Tin EQHK4 40GE0/0/6 DELLR650 F11
+      - Hong Kong Sha Tin EQHK4 40GE0/0/7 DELLR650 F12
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/0 DELLR660  F01
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/1 DELLR660 F02
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/2 DELLR6625 F03
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/3 DELLR6615 F04
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/10 DELLR6515 F13
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/11 DELLR6515 F14
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/12 DELLR650 F15
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/13 DELLR650 F16
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/14 DELLR6515 F17
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/15 DELLR6515 F18
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/16 DELLR6515 F19
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/17 DELLR6515 F20
+  - name: ♻️ 自动选择
+    type: select
+    proxies:
+      - Hong Kong-01
+      - Hong Kong-02
+      - Hong Kong-03
+      - Hong Kong-04
+      - Hong Kong-05
+      - Hong Kong-06
+      - Hong Kong-07
+      - Hong Kong-08
+      - Hong Kong-09
+      - Hong Kong-10
+      - Hong Kong-11
+      - Hong Kong-12
+      - Hong Kong-13
+      - Hong Kong-14
+      - Hong Kong-15
+      - Hong Kong-16
+      - Hong Kong-17
+      - Hong Kong-18
+      - Hong Kong-19
+      - Hong Kong-20
+      - Taiwan-01
+      - Taiwan-02
+      - Taiwan-03
+      - Taiwan-04
+      - Taiwan-05
+      - Taiwan-06
+      - Taiwan-07
+      - Taiwan-08
+      - Taiwan-09
+      - Taiwan-10
+      - Japan-01
+      - Japan-02
+      - Japan-03
+      - Japan-04
+      - Japan-05
+      - Japan-06
+      - Japan-07
+      - Japan-08
+      - Japan-09
+      - Japan-10
+      - Singapore-01
+      - Singapore-02
+      - Singapore-03
+      - Singapore-04
+      - Singapore-05
+      - Singapore-06
+      - Singapore-07
+      - Singapore-08
+      - Singapore-09
+      - Singapore-10
+      - USA-01
+      - USA-02
+      - USA-03
+      - USA-04
+      - USA-05
+      - USA-06
+      - USA-07
+      - USA-08
+      - USA-09
+      - USA-10
+      - UK-01
+      - UK-02
+      - UK-03
+      - UK-04
+      - UK-05
+      - Malaysia-01
+      - Malaysia-02
+      - Malaysia-03
+      - Malaysia-04
+      - Malaysia-05
+      - Turkey-01
+      - Turkey-02
+      - Argentina-01
+      - Argentina-02
+      - 香港实验性 IEPL 中继 1
+      - 日本实验性 IEPL 中继 1
+      - 新加坡实验性 IEPL 中继 1
+      - 美国实验性 IEPL 中继 1
+      - 香港高级 IEPL 中继 1
+      - 香港高级 IEPL 中继 2
+      - 香港高级 IEPL 中继 3
+      - 日本高级 IEPL 中继 1
+      - 日本高级 IEPL 中继 2
+      - 日本高级 IEPL 中继 3
+      - 新加坡高级 IEPL 中继 1
+      - 新加坡高级 IEPL 中继 2
+      - 新加坡高级 IEPL 中继 3
+      - 台湾高级 IEPL 中继 1
+      - 台湾高级 IEPL 中继 2
+      - 台湾高级 IEPL 中继 3
+      - 美国高级 IEPL 中继 1
+      - 美国高级 IEPL 中继 2
+      - 美国高级 IEPL 中继 3
+      - 香港标准 IEPL 中继 1
+      - 香港标准 IEPL 中继 2
+      - 香港标准 IEPL 中继 3
+      - 香港标准 IEPL 中继 4
+      - 香港标准 IEPL 中继 5
+      - 香港标准 IEPL 中继 6
+      - 香港标准 IEPL 中继 7
+      - 香港标准 IEPL 中继 8
+      - 日本标准 IEPL 中继 1
+      - 日本标准 IEPL 中继 2
+      - 日本标准 IEPL 中继 3
+      - 日本标准 IEPL 中继 4
+      - 日本标准 IEPL 中继 5
+      - 日本标准 IEPL 中继 6
+      - 日本标准 IEPL 中继 7
+      - 日本标准 IEPL 中继 8
+      - 新加坡标准 IEPL 中继 1
+      - 新加坡标准 IEPL 中继 2
+      - 新加坡标准 IEPL 中继 3
+      - 新加坡标准 IEPL 中继 4
+      - 新加坡标准 IEPL 中继 5
+      - 新加坡标准 IEPL 中继 6
+      - 新加坡标准 IEPL 中继 7
+      - 新加坡标准 IEPL 中继 8
+      - 台湾标准 IEPL 中继 1
+      - 台湾标准 IEPL 中继 2
+      - 台湾标准 IEPL 中继 3
+      - 美国标准 IEPL 中继 1
+      - 美国标准 IEPL 中继 2
+      - 美国标准 IEPL 中继 3
+      - 美国标准 IEPL 中继 4
+      - 美国标准 IEPL 中继 5
+      - 美国标准 IEPL 中继 6
+      - 美国标准 IEPL 中继 7
+      - 美国标准 IEPL 中继 8
+      - 摩尔多瓦标准 IEPL 中继 1
+      - 乌克兰标准 IEPL 中继 1
+      - 意大利标准 IEPL 中继 1
+      - 匈牙利标准 IEPL 中继 1
+      - 西班牙标准 IEPL 中继 1
+      - 土耳其标准 IEPL 中继 1
+      - 德国标准 IEPL 中继 1
+      - 德国标准 IEPL 中继 2
+      - 英国标准 IEPL 中继 1
+      - 英国标准 IEPL 中继 2
+      - 荷兰标准 IEPL 中继 1
+      - 荷兰标准 IEPL 中继 2
+      - 法国标准 IEPL 中继 1
+      - 法国标准 IEPL 中继 2
+      - 加拿大标准 IEPL 中继 1
+      - 加拿大标准 IEPL 中继 2
+      - 阿根廷标准 IEPL 中继 1
+      - 巴西标准 IEPL 中继 1
+      - 智利标准 IEPL 中继 1
+      - 澳大利亚标准 IEPL 中继 1
+      - 新西兰标准 IEPL 中继 1
+      - 韩国标准 IEPL 中继 1
+      - 韩国标准 IEPL 中继 2
+      - 印尼标准 IEPL 中继 1
+      - 泰国标准 IEPL 中继 1
+      - 越南标准 IEPL 中继 1
+      - 印度标准 IEPL 中继 1
+      - 巴基斯坦标准 IEPL 中继 1
+      - 以色列标准 IEPL 中继 1
+      - 阿联酋标准 IEPL 中继 1
+      - 菲律宾标准 IEPL 中继 1
+      - 马来西亚标准 IEPL 中继 1
+      - 埃及标准 IEPL 中继 1
+      - Australia Sydney Mascot EQSY1 25GE0/0/0 DELLR650 F01
+      - Australia Sydney Mascot EQSY1 25GE0/0/1 DELLR650 F02
+      - Australia Sydney Mascot EQSY1 25GE0/0/2 DELLR650 F03
+      - Australia Sydney Mascot EQSY1 25GE0/0/3 DELLR650 F04
+      - Australia Sydney Mascot EQSY1 25GE0/0/4 DELLR650 F05
+      - Australia Sydney Mascot EQSY1 25GE0/0/5 DELLR650 F06
+      - Australia Sydney Mascot EQSY1 25GE0/0/6 DELLR650 F07
+      - Australia Sydney Mascot EQSY1 25GE0/0/7 DELLR650 F08
+      - Australia Sydney Mascot EQSY1 25GE0/0/8 DELLR650 F09
+      - Australia Sydney Mascot EQSY1 25GE0/0/8 DELLR650 F10
+      - Canada Quebec Montreal Beauharnois 10GE0/0/23 F01
+      - Canada Quebec Montreal Beauharnois 10GE0/0/24 DELLR650 F02
+      - Canada Quebec Montreal Beauharnois 10GE0/0/25 DELLR650 F03
+      - Canada Quebec Montreal Beauharnois 10GE0/0/26DELLR6515 F04
+      - Canada Quebec Montreal Beauharnois 10GE0/0/27 DELLR6515 F05
+      - Canada Quebec Montreal Beauharnois 10GE0/0/28 DELLR6515 F06
+      - Canada Quebec Montreal Beauharnois 10GE0/0/29 DELLR6525 F07
+      - Canada Quebec Montreal Beauharnois 10GE0/0/30 DELLR650 F08
+      - Canada Quebec Montreal Beauharnois 10GE0/0/31 DELLR6615 F09
+      - Canada Quebec Montreal Beauharnois 10GE0/0/32 DELLR6515 F10
+      - French Hauts-de-France Gravelines 25GE0/0/10 DELLR640 F08
+      - French Hauts-de-France Gravelines 25GE0/0/11 DELLR640 F09
+      - French Hauts-de-France Gravelines 25GE0/0/12 DELLR640 F10
+      - French Hauts-de-France Gravelines 25GE0/0/3 DELLR640 F01
+      - French Hauts-de-France Gravelines 25GE0/0/4 DELLR640 F02
+      - French Hauts-de-France Gravelines 25GE0/0/5 DELLR640 F03
+      - French Hauts-de-France Gravelines 25GE0/0/6 DELLR640 F04
+      - French Hauts-de-France Gravelines 25GE0/0/7 DELLR640 F05
+      - French Hauts-de-France Gravelines 25GE0/0/8 DELLR640 F06
+      - French Hauts-de-France Gravelines 25GE0/0/9 DELLR640 F07
+      - German Hessen Limburg an der Lahn 10GE0/0/10 DELLR650 F02
+      - German Hessen Limburg an der Lahn 10GE0/0/11 DELLR650 F03
+      - German Hessen Limburg an der Lahn 10GE0/0/12 DELLR650 F04
+      - German Hessen Limburg an der Lahn 10GE0/0/13 DELLR650 F05
+      - German Hessen Limburg an der Lahn 10GE0/0/14 DELLR650 F06
+      - German Hessen Limburg an der Lahn 10GE0/0/15 DELLR650 F07
+      - German Hessen Limburg an der Lahn 10GE0/0/16 DELLR650 F08
+      - German Hessen Limburg an der Lahn 10GE0/0/17 DELLR650 F09
+      - German Hessen Limburg an der Lahn 10GE0/0/18 DELLR650 F10
+      - German Hessen Limburg an der Lahn 10GE0/0/9 DELLR650 F01
+      - Hong Kong Chai Wan MEGA-i 10GE0/0/23 DELLR6515 F39
+      - Hong Kong Chai Wan MEGA-i 10GE0/0/27 DELLR640 F40
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/0 DELLR650 F31
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/1 DELLR650 F32
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/2 DELLR650 F33
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/3 DELLR650 F34
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/4 DELLR650 F35
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/5 DELLR650 F36
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/6 DELLR650 F37
+      - Hong Kong Chai Wan MEGA-i 40GE0/0/7 DELLR650 F38
+      - Hong Kong Sha Tin EQHK4 25GE0/0/13 DELLR660 F21
+      - Hong Kong Sha Tin EQHK4 25GE0/0/14 DELLR660 F22
+      - Hong Kong Sha Tin EQHK4 25GE0/0/15 DELLR660 F23
+      - Hong Kong Sha Tin EQHK4 25GE0/0/16 DELLR660 F24
+      - Hong Kong Sha Tin EQHK4 25GE0/0/17 DELLR660 F25
+      - Hong Kong Sha Tin EQHK4 25GE0/0/18 DELLR660 F26
+      - Hong Kong Sha Tin EQHK4 25GE0/0/19 DELLR660 F27
+      - Hong Kong Sha Tin EQHK4 25GE0/0/20 DELLR660 F28
+      - Hong Kong Sha Tin EQHK4 25GE0/0/21 DELLR660 F29
+      - Hong Kong Sha Tin EQHK4 25GE0/0/22 DELLR660 F30
+      - Hong Kong Sha Tin EQHK4 40GE0/0/0 DELLR650 F05
+      - Hong Kong Sha Tin EQHK4 40GE0/0/1 DELLR650 F06
+      - Hong Kong Sha Tin EQHK4 40GE0/0/2 DELLR650 F07
+      - Hong Kong Sha Tin EQHK4 40GE0/0/3 DELLR650 F08
+      - Hong Kong Sha Tin EQHK4 40GE0/0/4 DELLR650 F09
+      - Hong Kong Sha Tin EQHK4 40GE0/0/5 DELLR650 F10
+      - Hong Kong Sha Tin EQHK4 40GE0/0/6 DELLR650 F11
+      - Hong Kong Sha Tin EQHK4 40GE0/0/7 DELLR650 F12
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/0 DELLR660  F01
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/1 DELLR660 F02
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/2 DELLR6625 F03
+      - Hong Kong Tsuen Wan EQHK1 100GE0/0/3 DELLR6615 F04
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/10 DELLR6515 F13
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/11 DELLR6515 F14
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/12 DELLR650 F15
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/13 DELLR650 F16
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/14 DELLR6515 F17
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/15 DELLR6515 F18
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/16 DELLR6515 F19
+      - Hong Kong Tsuen Wan EQHK1 25GE0/0/17 DELLR6515 F20
+      - India Mumbai Andheri East EQMB1 10GE0/0/0 DELLR630 F01
+      - India Mumbai Andheri East EQMB1 10GE0/0/1 DELLR630 F02
+      - India Mumbai Andheri East EQMB1 10GE0/0/2 DELLR630 F03
+      - India Mumbai Andheri East EQMB1 10GE0/0/3 DELLR620 F04
+      - India Mumbai Andheri East EQMB1 10GE0/0/4 DELLR640 F05
+      - India Mumbai Andheri East EQMB1 10GE0/0/5 DELLR650 F06
+      - India Mumbai Andheri East EQMB1 10GE0/0/6 DELLR630 F07
+      - India Mumbai Andheri East EQMB1 10GE0/0/7 DELLR630 F08
+      - India Mumbai Andheri East EQMB1 10GE0/0/8 DELLR630 F09
+      - Japan Osaka Nishi Ward EQOS1 25GE0/0/10 DELLR650 F19
+      - Japan Osaka Nishi Ward EQOS1 25GE0/0/15 DELLR650 F20
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/0 DELLR6515 F15
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/1 DELLR650 F16
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/2 DELLR660 F17
+      - Japan Osaka Nishi Ward EQOS1 40GE0/0/3 DELLR650 F18
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/0 DELLR660 F09
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/1 DELLR660 F10
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/2 DELLR650 F11
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/3 DELLR660 F12
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/4 DELLR660 F13
+      - Japan Tokyo Higashishinagawa EQTY8 100GE0/0/5 DELLR660 F14
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/0 DELLR660 F01
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/1 DELLR660 F02
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/2 DELLR660 F03
+      - Japan Tokyo Ōta City EQTY1 100GE0/0/3 DELLR660 F04
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/0 DELLR650 F05
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/1 DELLR650 F06
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/2 DELLR650 F07
+      - Japan Tokyo Ōta City EQTY1 40GE0/0/3 DELLR650 F08
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/2 DELLR630 F03
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/3 DELLR630 F04
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/4 DELLR620 F05
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/5 DELLR620 F06
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/6 DELLR620 F07
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/7 DELLR620 F08
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/8 DELLR620 F09
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/9 DELLR620 F10
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/0 DELLR620 F01
+      - Russia Moscow район Западное Дегунино DataLine Дата-центр NORD 10GE0/0/1 DELLR620 F02
+      - Singapore Central Queenstown EQSG1 100GE0/0/0 DELLR650 F01
+      - Singapore Central Queenstown EQSG1 100GE0/0/1 DELLR650 F02
+      - Singapore Central Queenstown EQSG1 100GE0/0/2 DELLR650 F03
+      - Singapore Central Queenstown EQSG1 100GE0/0/3 DELLR650 F04
+      - Singapore Central Queenstown EQSG1 100GE0/0/4 DELLR660 F05
+      - Singapore Central Queenstown EQSG1 100GE0/0/5 DELLR660 F06
+      - Singapore Central Queenstown EQSG1 100GE0/0/6 DELLR650 F07
+      - Singapore Central Queenstown EQSG1 100GE0/0/7 DELLR650 F08
+      - Singapore Central Queenstown EQSG1 100GE0/0/8 DELLR660 F09
+      - Singapore Central Queenstown EQSG1 100GE0/0/9 DELLR660 F10
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/0 DELLR650 F01
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/1 DELLR650 F02
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/2 DELLR650 F03
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/3 DELLR650 F04
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/4 DELLR650 F05
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/5 DELLR650 F06
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/6 DELLR650 F07
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/7 DELLR6515 F08
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/8 DELLR6515 F09
+      - South Korea Seoul Mapo-gu EQSL1 40GE0/0/9 DELLR6515 F10
+      - Taiwan Hsinchu Zhubei 1GE0/0/0 DL360G10 F17
+      - Taiwan Hsinchu Zhubei 1GE0/0/1 DL360G10 F18
+      - Taiwan Hsinchu Zhubei 1GE0/0/2 DL360G10 F19
+      - Taiwan Hsinchu Zhubei 1GE0/0/3 DL360G10 F20
+      - Taiwan New Taipei Xinzhuang 10GE0/0/0 DELLR640 F01
+      - Taiwan New Taipei Xinzhuang 10GE0/0/1 DELLR650 F02
+      - Taiwan New Taipei Xinzhuang 10GE0/0/2 DELLR650 F03
+      - Taiwan New Taipei Xinzhuang 10GE0/0/3 DELLR650 F04
+      - Taiwan Taipei Xinyi 10GE0/0/0 DELLR640 F05
+      - Taiwan Taipei Xinyi 10GE0/0/1 DELLR640 F06
+      - Taiwan Taipei Xinyi 10GE0/0/2 DELLC6520#1 F07
+      - Taiwan Taipei Xinyi 10GE0/0/3 DELLC6520#2 F08
+      - Taiwan Taipei Xinyi 10GE0/0/4 DELLC6520#3 F09
+      - Taiwan Taipei Xinyi 10GE0/0/5 DELLC6520#4 F10
+      - Taiwan Zhongli Renmei 10GE0/0/0 DL360G11 F11
+      - Taiwan Zhongli Renmei 10GE0/0/1 DL360G11 F12
+      - Taiwan Zhongli Renmei 10GE0/0/2 DL360G11 F13
+      - Taiwan Zhongli Renmei 10GE0/0/3 DL360G11 F14
+      - Taiwan Zhongli Renmei 10GE0/0/4 DL360G11 F15
+      - Taiwan Zhongli Renmei 10GE0/0/5 DL360G11 F16
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/10 DELLR640 F01
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/11 DELLR640 F02
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/12 DELLR640 F03
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/13 DELLR640 F04
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/14 DELLR640 F05
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/15 DELLR650 F06
+      - United Kingdom London Borough of Bexley Erith 10GE0/0/16 DELLR650 F07
+      - United Kingdom London Borough of Bexley Erith 25GE0/0/2 DELLR650 F08
+      - United Kingdom London Borough of Bexley Erith 25GE0/0/3 DELLR6515 F09
+      - United Kingdom London Borough of Bexley Erith 25GE0/0/4 DELLR6515 F10
+      - United States Washington Seattle EQSE2 100GE0/0/0 DELLR660 F01
+      - United States Washington Seattle EQSE2 100GE0/0/1 DELLR660 F02
+      - United States Washington Seattle EQSE2 100GE0/0/2 DELLR660 F03
+      - United States Washington Seattle EQSE2 100GE0/0/3 DELLR660 F04
+      - United States Washington Seattle EQSE2 100GE0/0/4 DELLR660 F05
+      - United States Washington Seattle EQSE2 100GE0/0/5 DELLR660 F06
+      - United States Washington Seattle EQSE2 100GE0/0/6 DELLR650 F07
+      - United States Washington Seattle EQSE2 100GE0/0/7 DELLR650 F08
+      - United States Washington Seattle EQSE2 100GE0/0/8 DELLR650 F09
+      - United States Washington Seattle EQSE2 100GE0/0/9 DELLR650 F10
+  - name: 🎥 奈飞节点
+    type: select
+    proxies:
+      - DIRECT
+rules:
+  - RULE-SET,private_domain,🟢 直连
+  - RULE-SET,apple_domain,🍎 Apple
+  - RULE-SET,proxylite,🚀 节点选择
+  - RULE-SET,ai,🤖 ChatGPT
+  - RULE-SET,github_domain,👨🏿‍💻 GitHub
+  - RULE-SET,youtube_domain,📹 YouTube
+  - RULE-SET,google_domain,🍀 Google
+  - RULE-SET,onedrive_domain,🐬 OneDrive
+  - RULE-SET,microsoft_domain,🪟 Microsoft
+  - RULE-SET,tiktok_domain,🎵 TikTok
+  - RULE-SET,speedtest_domain,✈️ Speedtest
+  - RULE-SET,telegram_domain,📲 Telegram
+  - RULE-SET,netflix_domain,🎥 NETFLIX
+  - RULE-SET,paypal_domain,💶 PayPal
+  - RULE-SET,geolocation-!cn,🚀 节点选择
+  - RULE-SET,cn_domain,🎯 全球直连
+  - RULE-SET,google_ip,🍀 Google,no-resolve
+  - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
+  - RULE-SET,telegram_ip,📲 Telegram,no-resolve
+  - RULE-SET,cn_ip,🎯 全球直连
+  - MATCH,🐟 漏网之鱼
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  qcy: &qcy {type: http, interval: 86400, behavior: domain, format: text}
+  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+rule-providers: 
+  private_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
+  proxylite: {!!merge <<: *class, url: "https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/master/ProxyLite.list"}
+  ai: {!!merge <<: *class, url: "https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/master/AI.list"}
+  youtube_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
+  google_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
+  github_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
+  telegram_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
+  netflix_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
+  paypal_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
+  onedrive_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
+  microsoft_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
+  apple_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs"}
+  speedtest_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
+  tiktok_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
+  gfw_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
+  geolocation-!cn: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
+  cn_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  
+  cn_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
+  google_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
+  telegram_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
+  netflix_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
