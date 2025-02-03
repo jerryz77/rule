@@ -17,7 +17,7 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 300
     proxy: 🟢 直连
-    url: "https://api.xmancdn.com/osubscribe.php?sid=71858&token=b0IrxVt0&sip002=1"
+    url: "https://api-huacloud.dev/sub?target=clash&insert=true&emoji=true&udp=true&clash.doh=true&new_name=true&filename=Flower_SS&url=https%3A%2F%2Fapi.xmancdn.com%2Fosubscribe.php%3Fsid%3D71858%26token%3Db0IrxVt0%26sip002%3D1"
   SSR:
     type: http
     interval: 1800
